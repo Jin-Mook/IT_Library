@@ -1,0 +1,10 @@
+{
+  "eslint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+	// 주석처리와 관련된 설정이다. 아래는 노란색으로 작성하도록 설정을 바꾸었다.
+	"editor.tokenColorCustomizations": {
+    "comments": "#ea9067"
+  }
+}
