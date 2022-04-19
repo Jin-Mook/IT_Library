@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./backend
+    
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    
+    container_name: it_library_backend
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - mysql
+  
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend
+    
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    
+    container_name: it_library_frontend
+
+    ports:
+      - "3000:3000"
+    
+    stdin_open: true
+
+  mysql:
+    platform: linux/amd64
+    build: ./mysql
+
+    restart: unless-stopped
+
+    container_name: it_library_mysql
+
+    ports:
+      - "3306:3306"
+      
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: it_library
+  
+  
+  redis:
+    image: redis
+    command: redis-server --requirepass password --port 6379
+    hostname: root
+    container_name: it_library_redis
+    ports:
+      - "6379:6379"

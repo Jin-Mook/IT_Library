@@ -1,0 +1,21 @@
+{
+  "name": "crawling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "crawling.js",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cheerio": "^1.0.0-rc.10",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "csv-writer": "^1.6.0",
+    "iconv-lite": "^0.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
