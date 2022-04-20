@@ -3,6 +3,7 @@ import Home from "./Home";
 import Nav from "./Nav";
 import Result from "./Result";
 import styles from "./App.module.css";
+import Login from "./Login";
 
 function App() {
   const onClick = () => {
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/* react-router-dom 6버전부터 바뀜 */}
           <Route path="/:title" element={<Result />} />
+          <Route path="/:title" element={<Login />} />
         </Routes>
       </Router>
       <button className={styles.topBtn} onClick={onClick}>

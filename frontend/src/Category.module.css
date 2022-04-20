@@ -1,9 +1,10 @@
 .main {
-  background-color: rgb(200, 200, 200);
+  border: 2px solid rgb(88, 141, 255);
   align-items: center;
 }
 
 .ul {
+  margin: 0px;
   list-style: none; /* li 점 삭제 */
   padding-left: 0px; /* li 들여쓰기 공간 삭제 */
   display: flex;
@@ -13,10 +14,10 @@
 .li {
   padding: 20px;
   width: 10%;
-  height: 18px;
+  height: 15px;
   cursor: pointer;
-  font-size: 18px;
-  border: 1px solid black;
+  font-size: 15px;
+  cursor: default;
 }
 
 a {

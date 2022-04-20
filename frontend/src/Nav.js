@@ -18,7 +18,7 @@ function Nav() {
           <Link to={"/"}>실시간 채팅</Link>
         </li>
         <li className={styles.li}>
-          <Link to={"/"}>로그인</Link>
+          <Link to={"/login"}>로그인</Link>
         </li>
       </ul>
     </div>

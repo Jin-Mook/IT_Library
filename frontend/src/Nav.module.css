@@ -11,7 +11,7 @@
   display: flex; /* 인접한 요소 세로배치(Home.js) */
   justify-content: space-evenly;
   align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
-  box-shadow: -10px 5px 10px -5px;
+  box-shadow: 0px -10px 10px 10px;
 }
 
 .title {
@@ -24,21 +24,20 @@
   justify-content: flex-start;
   align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
   box-shadow: none;
-  color: yellow;
 }
 
 .ul {
   padding: 10px;
-  margin-right: 50px;
+  margin-right: 100px;
   list-style: none;
   display: flex; /* 인접한 요소 세로배치(Home.js) */
   flex: none;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
 }
 
 .li {
   height: 20px;
-  margin-left: 40px;
+  margin-left: 30px;
   align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
 }

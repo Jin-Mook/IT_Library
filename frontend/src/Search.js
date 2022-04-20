@@ -16,8 +16,6 @@ function Search() {
     setSearch(e.target.value);
   };
 
-  const onClick = () => console.log(`Move ${search}`);
-
   return (
     <form className={styles.main} onSubmit={onSubmit}>
       <input
@@ -29,7 +27,7 @@ function Search() {
         autoFocus={true}
       />
       <Link to={`/${search}`}>
-        <Button onClick={onClick} src="images/search.png" />
+        <Button src="images/search.png" />
       </Link>
     </form>
   );
