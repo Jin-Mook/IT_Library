@@ -1,7 +1,5 @@
 .main {
   height: 250px;
   width: 166px;
-  border: 2px solid black;
   display: flex; /* 인접한 요소 가로배치(Home.js) */
-  justify-content: space-between;
 }
