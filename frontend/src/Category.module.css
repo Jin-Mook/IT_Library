@@ -1,0 +1,28 @@
+.main {
+  background-color: rgb(200, 200, 200);
+  align-items: center;
+}
+
+.ul {
+  list-style: none; /* li 점 삭제 */
+  padding-left: 0px; /* li 들여쓰기 공간 삭제 */
+  display: flex;
+  justify-content: space-between;
+}
+
+.li {
+  padding: 20px;
+  width: 10%;
+  height: 18px;
+  cursor: pointer;
+  font-size: 18px;
+  border: 1px solid black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  text-decoration: underline;
+}

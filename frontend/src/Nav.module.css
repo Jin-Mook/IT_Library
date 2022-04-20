@@ -1,0 +1,44 @@
+.main {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  padding: 20px;
+  font-size: 20px;
+  background-color: rgba(88, 141, 255, 0.95);
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  justify-content: space-evenly;
+  align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
+  box-shadow: -10px 5px 10px -5px;
+}
+
+.title {
+  padding: 10px;
+  height: 20px;
+  list-style: none;
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  margin-left: 50px;
+  margin-right: auto;
+  justify-content: flex-start;
+  align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
+  box-shadow: none;
+  color: yellow;
+}
+
+.ul {
+  padding: 10px;
+  margin-right: 50px;
+  list-style: none;
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  flex: none;
+  justify-content: flex-end;
+  align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
+}
+
+.li {
+  height: 20px;
+  margin-left: 40px;
+  align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
+}

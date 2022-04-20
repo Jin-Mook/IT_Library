@@ -1,0 +1,6 @@
+.main {
+  padding: 0px 0px 0px 0px; /* 하단 여백: Show_book 사이 거리 */
+  display: inline-flex; /* 인접한 요소 가로배치(Home.js) */
+  justify-content: space-between;
+  border: 2px solid black;
+}

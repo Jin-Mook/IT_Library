@@ -1,0 +1,18 @@
+.main {
+  margin: 0 auto;
+  margin-top: 75px; /* 페이지 상단 여백(Nav바랑 안겹치게 띄워놓아야함 */
+  width: 1000px;
+  border: 0 solid rgb(255, 230, 0);
+}
+
+.topBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: fixed;
+  right: 2%;
+  bottom: 30px;
+}

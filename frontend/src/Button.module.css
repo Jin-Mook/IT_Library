@@ -1,0 +1,17 @@
+.btn {
+  background-color: rgb(88, 141, 255);
+  color: white;
+  border: 0px;
+  width: 100px;
+  height: 50px;
+  text-align: center; /* ex) 버튼 안의 글자 가로 가운데 정렬 */
+  line-height: 50px; /* ex) 버튼 안의 글자 세로 가운데 정렬 */
+  font-size: 20px;
+}
+
+.img {
+  width: 30px;
+  height: 30px;
+  display: block; /* 이미지 가운데 정렬 */
+  margin: 0px auto; /* 이미지 가운데 정렬 */
+}

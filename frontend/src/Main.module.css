@@ -1,0 +1,5 @@
+.main {
+  padding: 0px; /* 상 값은 카테고리와 Show_book 사이 패딩 */
+  display: flex;
+  border: 2px solid black;
+}
