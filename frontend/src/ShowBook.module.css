@@ -1,6 +1,39 @@
 .main {
-  padding: 0px 0px 0px 0px; /* 하단 여백: Show_book 사이 거리 */
-  width: 100%;
-  display: inline-flex; /* 인접한 요소 가로배치(Home.js) */
+  padding: 0px;
+  display: flex; /* 인접한 요소 가로배치(Home.js) */
+  flex-direction: column;
   justify-content: space-between;
+  position: relative; /* 이동버튼을 위한 과정 */
+}
+
+.img {
+  padding: 40px;
+  display: flex; /* 인접한 요소 가로배치(Home.js) */
+  flex-direction: row;
+  justify-content: space-between;
+  border: 2px solid rgb(200, 200, 200);
+}
+
+.leftBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute; /* 이동버튼을 위한 과정 */
+  left: 7px;
+  top: 165px;
+}
+
+.rightBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute; /* 이동버튼을 위한 과정 */
+  right: 7px;
+  top: 165px;
 }

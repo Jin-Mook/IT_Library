@@ -26,7 +26,8 @@ function Search() {
         value={search}
         autoFocus={true}
       />
-      <Link to={`/${search}`}>
+      <Link to={`/${search}`} state={{ search: search }}>
+        {/* state를 사용하여 변수를 결과창으로 전달 */}
         <Button src="images/search.png" />
       </Link>
     </form>

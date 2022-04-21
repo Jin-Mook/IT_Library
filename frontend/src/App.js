@@ -15,8 +15,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} /> {/* react-router-dom 6버전부터 바뀜 */}
-          <Route path="/:title" element={<Result />} />
-          <Route path="/:title" element={<Login />} />
+          <Route path="/:result" element={<Result />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
       <button className={styles.topBtn} onClick={onClick}>

@@ -1,4 +1,3 @@
-import styles from "./Home.module.css";
 import Search from "./Search";
 import Main from "./Main";
 import Category from "./Category";

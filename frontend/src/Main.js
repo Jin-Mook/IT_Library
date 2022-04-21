@@ -1,24 +1,20 @@
 import styles from "./Main.module.css";
 import ShowBook from "./ShowBook";
-import { Link } from "react-router-dom";
+
+function BookList({ text }) {
+  return (
+    <div className={styles.booklist}>
+      <ShowBook text={text} />
+    </div>
+  );
+}
 
 function Main() {
   return (
-    <div>
-      <Link to={"/"}>평점 높은 순</Link>
-      <div className={styles.main}>
-        <ShowBook />
-      </div>
-
-      <Link to={"/"}>찜 갯수 높은 순</Link>
-      <div className={styles.main}>
-        <ShowBook />
-      </div>
-
-      <Link to={"/"}>주요 신간</Link>
-      <div className={styles.main}>
-        <ShowBook />
-      </div>
+    <div className={styles.main}>
+      <BookList text="평점 높은 순" />
+      <BookList text="찜 갯수 높은 순" />
+      <BookList text="주요 신간" />
     </div>
   );
 }

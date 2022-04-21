@@ -1,5 +1,5 @@
 .main {
-  padding: 60px;
+  padding: 30px; /* search바 주변 여백 */
   display: flex; /* 인접한 요소 가로배치(Home.js) */
   justify-content: center;
   align-items: center;
@@ -14,5 +14,5 @@
   padding-left: 20px;
   padding-right: 20px;
   outline: none; /* 포커스 시 파란테두리 제거 */
-  font-size: 20px;
+  font-size: 18px;
 }
