@@ -1,6 +1,6 @@
 import styles from "./Img.module.css";
 
-function Img() {
+function Img({ title, author, coverImg }) {
   const onMouseOver = () => {
     console.log("mouse in");
   };
@@ -10,7 +10,7 @@ function Img() {
   return (
     <img
       className={styles.main}
-      src="https://upload.wikimedia.org/wikipedia/ko/3/3c/해리_포터와_마법사의_돌_표지.jpg?20160929102754"
+      src={coverImg}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
       alt="thumbnail"
