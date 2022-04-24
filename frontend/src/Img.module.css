@@ -3,3 +3,23 @@
   width: 166px;
   display: flex; /* 인접한 요소 가로배치(Home.js) */
 }
+
+.main:hover {
+  color: rgba(0, 0, 0, 0.155);
+  filter: blur(3px) brightness(50%);
+}
+
+.detail {
+  padding: 0px 5px;
+  bottom: 50px;
+  font-size: 15px;
+  border-style: none;
+  position: absolute; /* 이동버튼을 위한 과정 */
+  color: white;
+  cursor: pointer;
+}
+
+.ul {
+  list-style: none;
+  padding: 0px;
+}
