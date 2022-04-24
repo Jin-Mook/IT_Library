@@ -13,8 +13,8 @@ function Main() {
   return (
     <div className={styles.main}>
       <BookList text="평점 높은 순" />
-      <BookList text="찜 갯수 높은 순" />
-      <BookList text="주요 신간" />
+      {/* <BookList text="찜 갯수 높은 순" />
+      <BookList text="주요 신간" /> */}
     </div>
   );
 }

@@ -2,32 +2,56 @@ import Img from "./Img";
 import styles from "./ShowBook.module.css";
 import { useState, useEffect } from "react";
 
-function Show_book({ text }) {
-  const [books, setBooks] = useState([]);
+function ShowBook({ text }) {
+  const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
+  const [showBooks, setShowBooks] = useState([]); //화면에 표시될 책 목록
+  const [index, setIndex] = useState(0);
 
   async function data() {
-    const response = await fetch("http://localhost:3000/data/data.json");
+    const response = await fetch("http://localhost:3000/data/data(all).json");
     const result = await response.json();
-    setBooks(result.data);
+    setAllBooks(result.data);
+    setShowBooks(result.data.slice(0, 4));
   }
+
+  function handleLeftBtn() {
+    setShowBooks(allBooks.slice(index - 4, index));
+    setIndex(index - 4);
+  }
+
+  function handleRightBtn() {
+    setShowBooks(allBooks.slice(index + 4, index + 8));
+    setIndex(index + 4);
+  }
+
   useEffect(() => {
+    // 한번만 렌더링 되게 해주는 것?
+    // 생각보다 중요하네 알아보자
     data();
   }, []);
+
   return (
     <div className={styles.main}>
       <div>{text}</div>
-      <button className={styles.leftBtn}>{"<"}</button>
-      <button className={styles.rightBtn}>{">"}</button>
+      <button className={styles.leftBtn} onClick={handleLeftBtn}>
+        {"<"}
+      </button>
+      <button className={styles.rightBtn} onClick={handleRightBtn}>
+        {">"}
+      </button>
       <div className={styles.img}>
-        {books.map((value) => (
-          <>
-            <Img author={value.author} title={value.title} coverImg={value.coverimg} />
-            {console.log(value)}
-          </>
+        {showBooks.map((value) => (
+          <Img
+            key={value.key}
+            author={value.author}
+            title={value.title}
+            coverImg={value.coverimg}
+          />
         ))}
       </div>
+      {`page(${index / 4 + 1}/10)`}
     </div>
   );
 }
 
-export default Show_book;
+export default ShowBook;

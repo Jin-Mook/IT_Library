@@ -2,10 +2,10 @@ import styles from "./Img.module.css";
 
 function Img({ title, author, coverImg }) {
   const onMouseOver = () => {
-    console.log("mouse in");
+    // console.log("mouse in");
   };
   const onMouseLeave = () => {
-    console.log("mouse out");
+    // console.log("mouse out");
   };
   return (
     <img
