@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import Result from "./Result";
 import styles from "./App.module.css";
 import Login from "./Login";
+import SignUp from "./SignUp";
 
 function App() {
   const onClick = () => {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} /> {/* react-router-dom 6버전부터 바뀜 */}
           <Route path="/:result" element={<Result />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </Router>
       <button className={styles.topBtn} onClick={onClick}>

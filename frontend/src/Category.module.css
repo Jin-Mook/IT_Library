@@ -1,6 +1,7 @@
 .main {
-  border: 2px solid rgb(170, 197, 255);
+  border: 1px solid rgb(170, 197, 255);
   align-items: center;
+  background-color: rgb(245, 245, 245);
 }
 
 .ul {

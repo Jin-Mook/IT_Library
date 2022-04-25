@@ -1,0 +1,51 @@
+.main {
+  margin: 0px auto;
+  margin-top: 200px;
+  width: 700px;
+  height: 700px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.inner {
+  margin: 0px auto;
+  width: fit-content;
+}
+
+.email {
+  width: 260px;
+  height: 50px;
+  margin: 30px auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none; /* 포커스 시 파란테두리 제거 */
+  font-size: 18px;
+  display: flex;
+  border: none;
+}
+
+.pwd {
+  width: 260px;
+  height: 50px;
+  margin: 30px auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none; /* 포커스 시 파란테두리 제거 */
+  font-size: 18px;
+  display: flex;
+  border: none;
+}
+
+.main button {
+  width: 100px;
+  height: 50px;
+  display: flex;
+  margin: 30px auto;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}

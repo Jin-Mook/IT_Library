@@ -1,7 +1,7 @@
 .main {
   margin-top: 30px; /* search바 사이의 간격 */
   padding: 0px;
-  border: 2px solid rgb(200, 200, 200);
+  border: 1px solid rgb(200, 200, 200);
 }
 
 .booklist {

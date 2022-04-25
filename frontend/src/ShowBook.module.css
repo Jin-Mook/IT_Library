@@ -11,7 +11,7 @@
   display: flex; /* 인접한 요소 가로배치(Home.js) */
   flex-direction: row;
   justify-content: space-between;
-  border: 2px solid rgb(200, 200, 200);
+  border: 1px solid rgb(200, 200, 200);
 }
 
 .leftBtn {
