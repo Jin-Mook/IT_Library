@@ -1,25 +1,40 @@
-.main {
+.flip {
   height: 250px;
   width: 166px;
   display: flex; /* 인접한 요소 가로배치(Home.js) */
+  perspective: 1100px;
 }
 
-.main:hover {
-  color: rgba(0, 0, 0, 0.155);
-  filter: blur(3px) brightness(50%);
-}
-
-.detail {
-  padding: 0px 5px;
-  bottom: 50px;
-  font-size: 15px;
-  border-style: none;
-  position: absolute; /* 이동버튼을 위한 과정 */
-  color: white;
-  cursor: pointer;
+.card {
+  height: 250px;
+  width: 166px;
+  position: relative;
+  transition: 0.3s;
+  transform-style: preserve-3d;
 }
 
 .ul {
+  margin: 0px;
+  padding: 5px;
   list-style: none;
-  padding: 0px;
+}
+
+.front,
+.back {
+  position: absolute;
+  height: 250px;
+  width: 166px;
+  backface-visibility: hidden;
+}
+
+/* 뒷면은 사전에 미리 뒤집기 */
+.back {
+  background-color: rgb(39, 39, 39);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/* 호버 시 뒤집기 */
+.flip:hover .card {
+  transform: rotateY(180deg);
 }

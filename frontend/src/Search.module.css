@@ -1,5 +1,5 @@
 .main {
-  padding: 30px; /* search바 주변 여백 */
+  padding-bottom: 30px; /* search바 주변 여백 */
   display: flex; /* 인접한 요소 가로배치(Home.js) */
   justify-content: center;
   align-items: center;

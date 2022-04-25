@@ -15,7 +15,7 @@ function Nav() {
 
     return login === false ? (
       <li className={styles.li} onClick={onLogin}>
-        <Link to={"/"}>로그인</Link>
+        <Link to={"/login"}>로그인</Link>
       </li>
     ) : (
       <>
@@ -29,27 +29,25 @@ function Nav() {
     );
   }
 
-  <li className={styles.li}>
-    <Link to={"/login"}>로그인</Link>
-  </li>;
-
   return (
     <div className={styles.main}>
-      <div className={styles.title}>
-        <Link to={"/"}>IT 도서 다모아</Link>
+      <div className={styles.text}>
+        <div className={styles.title}>
+          <Link to={"/"}>IT 도서 다모아</Link>
+        </div>
+        <ul className={styles.ul}>
+          <li className={styles.li}>
+            <Link to={"/"}>도서 목록</Link>
+          </li>
+          <li className={styles.li}>
+            <Link to={"/"}>도서 리뷰</Link>
+          </li>
+          <li className={styles.li}>
+            <Link to={"/"}>실시간 채팅</Link>
+          </li>
+          <LoginNav />
+        </ul>
       </div>
-      <ul className={styles.ul}>
-        <li className={styles.li}>
-          <Link to={"/"}>도서 목록</Link>
-        </li>
-        <li className={styles.li}>
-          <Link to={"/"}>도서 리뷰</Link>
-        </li>
-        <li className={styles.li}>
-          <Link to={"/"}>실시간 채팅</Link>
-        </li>
-        <LoginNav />
-      </ul>
     </div>
   );
 }

@@ -8,20 +8,22 @@ function Img({ title, author, id, coverImg }) {
     // console.log("mouse out");
   };
   return (
-    <div>
-      <img
-        className={styles.main}
-        src={coverImg}
-        onMouseOver={onMouseOver}
-        onMouseLeave={onMouseLeave}
-        alt="thumbnail"
-      ></img>
-      <div className={styles.detail}>
-        <ul className={styles.ul}>
-          <li>{title}</li>
-          <li>{author}</li>
-          <li>{id}</li>
-        </ul>
+    <div className={styles.flip}>
+      <div className={styles.card}>
+        <img
+          className={styles.front}
+          src={coverImg}
+          onMouseOver={onMouseOver}
+          onMouseLeave={onMouseLeave}
+          alt="thumbnail"
+        ></img>
+        <div className={styles.back}>
+          <ul className={styles.ul}>
+            <li>{title}</li>
+            <li>{author}</li>
+            <li>{id}</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
