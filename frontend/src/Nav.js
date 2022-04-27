@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
+
 function Nav() {
   const [login, setLogin] = useState(false); // 로그인과 비로그인 시 Nav바에서 표시되는 문자 다르게 출력
 

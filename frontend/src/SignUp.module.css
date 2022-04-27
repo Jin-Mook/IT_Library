@@ -1,51 +1,84 @@
 .main {
-  margin: 0px auto;
-  margin-top: 200px;
-  width: 700px;
-  height: 700px;
-  border: 2px solid black;
-  text-align: center;
+  width: 500px;
+  height: 500px auto;
+  margin: 0 auto;
+  border: 1px solid black;
+  display: grid;
+  row-gap: 30px; /* fr 사이의 여백 */
+  grid-template-rows: 70px 70px 140px 50px;
+  padding: 50px;
 }
 
-.inner {
-  margin: 0px auto;
-  width: fit-content;
+.hidden {
+  /* visibility: hidden; */
+  color: rgb(228, 0, 0);
 }
 
-.email {
-  width: 260px;
+.nickname {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.nickname_text {
   height: 50px;
-  margin: 30px auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0px 20px;
   background-color: rgba(0, 0, 0, 0.1);
   outline: none; /* 포커스 시 파란테두리 제거 */
   font-size: 18px;
-  display: flex;
+  border: none;
+}
+
+.nickname_btn {
+  padding: 0px;
+  height: 50px;
+  background-color: rgb(88, 141, 255);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+}
+
+.email {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.email_text {
+  height: 50px;
+  padding: 0px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none; /* 포커스 시 파란테두리 제거 */
+  font-size: 18px;
+  border: none;
+}
+
+.email_btn {
+  padding: 0px;
+  background-color: rgb(88, 141, 255);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
   border: none;
 }
 
 .pwd {
-  width: 260px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.pwd_text {
   height: 50px;
-  margin: 30px auto;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0px 20px;
   background-color: rgba(0, 0, 0, 0.1);
   outline: none; /* 포커스 시 파란테두리 제거 */
   font-size: 18px;
-  display: flex;
   border: none;
 }
 
-.main button {
-  width: 100px;
-  height: 50px;
-  display: flex;
-  margin: 30px auto;
-  text-align: center;
-}
-
-p {
-  text-align: center;
+.btn {
+  background-color: rgb(88, 141, 255);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
 }
