@@ -10,7 +10,11 @@
 }
 
 .hidden {
-  /* visibility: hidden; */
+  visibility: hidden;
+  color: rgb(228, 0, 0);
+}
+
+.show {
   color: rgb(228, 0, 0);
 }
 
