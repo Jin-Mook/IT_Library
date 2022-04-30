@@ -1,5 +1,5 @@
 import Search from "./Search";
-import Main from "./Main";
+import Main from "./Main/Main";
 import Category from "./Category";
 
 function Home() {

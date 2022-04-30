@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Nav from "./Nav";
-import Result from "./Result";
+import Home from "./HomePage/Home/Home";
+import Nav from "./components/Nav";
+import Result from "./Result/Result";
 import styles from "./App.module.css";
-import Login from "./Login";
-import SignUp from "./SignUp";
+import Login from "./SignIn/Login";
+import SignUp from "./SignIn/SignUp";
 
 function App() {
   const onClick = () => {
+    // TOP버튼 펑션
     window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
   };
   return (

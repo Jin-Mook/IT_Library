@@ -22,7 +22,7 @@ function SignUp() {
   }
 
   function CheckPwd(pwd) {
-    var reg = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
+    var reg = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{10,16}$/; // 비밀번호에 문자, 숫자, 특수문자가 각각 최소 1개 이상, 10자리에서 최대 16자리까지 허용
     if (!reg.test(pwd.target.value)) {
       return setPwdCss(styles.show); // 비밀번호가 조건에 맞지 않을 때
     } else {

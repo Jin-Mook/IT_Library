@@ -1,5 +1,5 @@
 import styles from "./Login.module.css";
-import Button from "./Button";
+import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 function Login() {
