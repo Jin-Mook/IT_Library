@@ -45,6 +45,7 @@ CREATE TABLE `Users` (
     `email` VARCHAR(255)  NOT NULL ,
     `password` text  NOT NULL ,
     `social` VARCHAR(255)  NOT NULL DEFAULT 'local',
+    `email_check` BOOLEAN DEFAULT false,
     PRIMARY KEY (
         `id`
     )
