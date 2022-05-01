@@ -2,7 +2,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { BookCategoriesEntity } from 'src/entity/bookCategories.entity';
 import { BookCommentsEntity } from 'src/entity/bookComments.entity';
-import { BookReviesEntity } from 'src/entity/bookRevies.entity';
+import { BookReviewsEntity } from 'src/entity/bookReviews.entity';
 import { BooksEntity } from 'src/entity/books.entity';
 import { ChatMessagesEntity } from 'src/entity/chatMessages.entity';
 import { ChatRoomsEntity } from 'src/entity/chatRooms.entity';
@@ -24,9 +24,9 @@ export const config: TypeOrmModuleOptions = {
     UsersEntity,
     ChatMessagesEntity,
     ChatRoomsEntity,
-    BookReviesEntity,
+    BookReviewsEntity,
     ReviewCommentsEntity,
   ],
-  synchronize: true,
+  synchronize: false,
   logging: true,
 };

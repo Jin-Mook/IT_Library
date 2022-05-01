@@ -2,12 +2,15 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UsersEntity } from './users.entity';
 
 @Entity({ name: 'Book_revies' })
-export class BookReviesEntity {
+export class BookReviewsEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -43,4 +46,12 @@ export class BookReviesEntity {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToMany(() => UsersEntity, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @JoinTable({
+    name: 'Users_And_BookReviews',
+    joinColumn: { name: 'book_review_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'user_id', referencedColumnName: 'id' },
+  })
+  users: UsersEntity[];
 }

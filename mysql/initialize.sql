@@ -53,11 +53,10 @@ CREATE TABLE `Users` (
 
 -- 찜하기
 CREATE TABLE `Users_And_Books` (
-    `id` int AUTO_INCREMENT NOT NULL ,
     `book_id` int  NOT NULL ,
     `user_id` int  NOT NULL ,
     PRIMARY KEY (
-        `id`
+        `book_id`, `user_id`
     )
 );
 

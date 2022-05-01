@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { ChatRoomsEntity } from './chatRooms.entity';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BooksEntity } from './books.entity';
+import { BookReviewsEntity } from './bookReviews.entity';
 
 @Entity({ name: 'Users' })
 export class UsersEntity {
@@ -19,4 +22,13 @@ export class UsersEntity {
 
   @Column({ type: 'boolean', default: false })
   email_check: boolean;
+
+  @ManyToMany(() => BooksEntity)
+  books: BooksEntity[];
+
+  @ManyToMany(() => ChatRoomsEntity)
+  chatRooms: ChatRoomsEntity[];
+
+  @ManyToMany(() => BookReviewsEntity)
+  bookReviews: BookReviewsEntity[];
 }

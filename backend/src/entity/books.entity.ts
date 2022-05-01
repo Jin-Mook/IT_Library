@@ -1,4 +1,14 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { BookCategoriesEntity } from './bookCategories.entity';
+import { UsersEntity } from './users.entity';
 
 @Entity({ name: 'Books' })
 export class BooksEntity {
@@ -23,6 +33,13 @@ export class BooksEntity {
   @Column()
   book_category: number;
 
+  @ManyToOne(() => BookCategoriesEntity, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({ name: 'book_category', referencedColumnName: 'id' })
+  bookCategories: BookCategoriesEntity;
+
   @Column({ type: 'text', nullable: true })
   book_info: string;
 
@@ -34,4 +51,12 @@ export class BooksEntity {
 
   @Column({ default: 0 })
   comments_count: number;
+
+  @ManyToMany(() => UsersEntity, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @JoinTable({
+    name: 'Users_And_Books',
+    joinColumn: { name: 'book_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'user_id', referencedColumnName: 'id' },
+  })
+  users: UsersEntity[];
 }
