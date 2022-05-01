@@ -29,10 +29,10 @@ CREATE TABLE `Book_comments` (
     `user_id` int  NOT NULL ,
     `comment_title` text  NOT NULL ,
     `comment_rating` int  NOT NULL ,
-    `comment_date` date  NOT NULL ,
+    `comment_date` datetime  NOT NULL ,
     `comment_context` text  NULL ,
-    `created_at` date  NOT NULL ,
-    `updated_at` date  NOT NULL ,
+    `created_at` datetime  NOT NULL ,
+    `updated_at` datetime  NOT NULL ,
     PRIMARY KEY (
         `id`
     )
@@ -77,11 +77,11 @@ CREATE TABLE `Book_reviews` (
     `book_publisher` VARCHAR(255)  NOT NULL ,
     `review_rating` int  NOT NULL DEFAULT 0,
     `book_recommend` VARCHAR(255)  NOT NULL ,
-    `review_recommend` int  NOT NULL DEFAULT 0,
+    `review_recommend_count` int  NOT NULL DEFAULT 0,
     `view_track` int  NOT NULL DEFAULT 0,
     `context` text  NOT NULL ,
-    `created_at` date  NOT NULL ,
-    `updated_at` date  NOT NULL ,
+    `created_at` datetime  NOT NULL ,
+    `updated_at` datetime  NOT NULL ,
     PRIMARY KEY (
         `id`
     )
@@ -94,8 +94,8 @@ CREATE TABLE `Review_comments` (
     `parent_comment_id` int  NOT NULL ,
     `comment` text  NOT NULL ,
     `depth` int  NOT NULL DEFAULT 0,
-    `created_at` date  NOT NULL ,
-    `updated_at` date  NOT NULL ,
+    `created_at` datetime  NOT NULL ,
+    `updated_at` datetime  NOT NULL ,
     PRIMARY KEY (
         `id`
     )
@@ -108,6 +108,8 @@ CREATE TABLE `Chat_rooms` (
     `chat_title` VARCHAR(255)  NOT NULL ,
     `chat_topic` VARCHAR(255)  NOT NULL ,
     `total_person` int  NOT NULL ,
+    `created_at` datetime  NOT NULL ,
+    `updated_at` datetime  NOT NULL ,
     PRIMARY KEY (
         `id`
     )
@@ -119,7 +121,7 @@ CREATE TABLE `Chat_messages` (
     `chat_room_id` int  NOT NULL ,
     `user_id` int  NOT NULL ,
     `message` text  NOT NULL ,
-    `created_at` date  NOT NULL ,
+    `created_at` datetime  NOT NULL ,
     PRIMARY KEY (
         `id`
     )
