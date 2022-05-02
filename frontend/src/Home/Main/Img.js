@@ -1,6 +1,7 @@
 import styles from "./Img.module.css";
 
 function Img({ title, author, id, coverImg }) {
+  // 메인화면 책 커버 이미지
   const onMouseOver = () => {
     // console.log("mouse in");
   };

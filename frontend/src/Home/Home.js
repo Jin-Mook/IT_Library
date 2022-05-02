@@ -1,6 +1,6 @@
-import Search from "./Search";
+import Search from "../components/Search";
 import Main from "./Main/Main";
-import Category from "./Category";
+import Category from "../Category/Category";
 
 function Home() {
   // 메인화면

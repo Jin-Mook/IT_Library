@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Search.module.css";
-import Button from "../../components/Button";
+import Button from "./Button";
 
 function Search() {
   // 검색창
