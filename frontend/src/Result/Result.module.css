@@ -1,0 +1,5 @@
+.main {
+  margin: 0 auto;
+  margin-top: 65px; /* 페이지 상단 여백(Nav바랑 안겹치게 띄워놓아야함 */
+  width: 1000px;
+}

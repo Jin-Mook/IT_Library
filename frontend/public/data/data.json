@@ -1,0 +1,28 @@
+{
+    "data" : [
+        {
+        "id" :  1,
+        "author" : "조앤 K 롤링",
+        "title" : "해리포터 마법사의 돌",
+        "coverimg" : "https://w.namu.la/s/bcdb0dd5ec58afcfab3bc4e4ccf1bbd84358661fca8876ade9bdf165c927295b7ec01956186b52319f7444565c662ebff80c8610f98b5da6400bfb57a1a9704b40d147a70394ffc655915aaed405e879c9d0cd48d72d4e684eca3488cd24ff96a59118cecd44000a575cd450f73a0838"
+        },
+        {
+        "id" : 2,
+        "author" : "조앤 K 롤링",
+        "title" : "해리포터 비밀의 방",
+        "coverimg" : "https://w.namu.la/s/43904443b455a74a0344208f6c5f028253bf934388137120cf8080e63f67f3612b2a704fe5d0001cc28b300c4bac876d0516b6770588d0bc09bbbecfebfa3ecd7a6d6a52bbd32d1b3c0b730455aa35b02169765b53bd7f418c3da8e78b3946314388d4fcd5d6c7875458c72122bb6a8b"
+        },
+        {
+        "id" : 3,
+        "author" : "조앤 K 롤링",
+        "title" : "해리포터 아즈카반의 죄수",
+        "coverimg" : "https://w.namu.la/s/acfe36f91f8c364d34670d5438c221033d7717b3b02df88d7cf9abcec39b34317caf2a9d401238c4078a7f1b47d88c2467781977a6889d2b5c4acbfa7fff440e9bca911516a448225615211cc3c4dece57298c81df4e9a1f5f46ff466c190f3fdb7d18341a82481f43dc8417619de1b5"
+        },
+        {
+        "id" : 4,
+        "author" : "조앤 K 롤링",
+        "title" : "해리포터 불의 잔",
+        "coverimg" : "https://w.namu.la/s/dc1280baa99760e0eebfcb5e2d1124178ff4c136abf7a882d55382382476eb72dfecc1eae54d56dfa0f90006d5ae68b5d81e7f542d051451c289aa85f4f417123ad98bee9d2bbaf616c163382958994566faf91e5f8061d32a590c2bc63c4be102f5df1c965f96efdf07c993f8653c9d"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+.main {
+  padding-bottom: 30px; /* search바 주변 여백 */
+  display: flex; /* 인접한 요소 가로배치(Home.js) */
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 10px;
+  width: 300px;
+  height: 50px;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  outline: none; /* 포커스 시 파란테두리 제거 */
+  font-size: 18px;
+}

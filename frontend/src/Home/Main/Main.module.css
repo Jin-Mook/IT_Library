@@ -1,0 +1,12 @@
+.main {
+  margin-top: 30px; /* search바 사이의 간격 */
+  padding: 0px;
+  border: 1px solid rgb(200, 200, 200);
+}
+
+.booklist {
+  padding: 0px;
+  margin: 40px 30px; /* showbook간 간격은 겹침 */
+  display: flex;
+  flex-direction: column;
+}

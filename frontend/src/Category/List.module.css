@@ -1,0 +1,42 @@
+.main {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  width: 700px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border: 1px solid black;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 350px 1fr;
+  border: 1px solid black;
+}
+
+.img {
+  height: 175px;
+  width: 116px;
+}
+
+.explain {
+  border: 1px solid black;
+}
+
+.btn_div {
+  display: grid;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn {
+  background-color: rgb(88, 141, 255);
+  color: white;
+  border: 0px;
+  width: 100px;
+  height: 40px;
+  text-align: center; /* ex) 버튼 안의 글자 가로 가운데 정렬 */
+  line-height: 40px; /* ex) 버튼 안의 글자 세로 가운데 정렬 height와 같은 값 이여야 함*/
+  font-size: 15px;
+  cursor: pointer;
+}

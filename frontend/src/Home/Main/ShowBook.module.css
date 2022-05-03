@@ -1,0 +1,41 @@
+.main {
+  padding: 0px;
+  display: flex; /* 인접한 요소 가로배치(Home.js) */
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /* 이동버튼을 위한 과정 */
+}
+
+.img {
+  padding: 40px;
+  display: flex; /* 인접한 요소 가로배치(Home.js) */
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid rgb(200, 200, 200);
+}
+
+.leftBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute; /* 이동버튼을 위한 과정 */
+  left: 7px;
+  top: 172px;
+  cursor: pointer;
+}
+
+.rightBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute; /* 이동버튼을 위한 과정 */
+  right: 7px;
+  top: 172px;
+  cursor: pointer;
+}

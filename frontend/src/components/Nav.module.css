@@ -1,0 +1,45 @@
+.main {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  padding: 20px 0px;
+  font-size: 20px;
+  background-color: rgba(88, 141, 255, 0.95);
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  justify-content: space-evenly;
+  align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
+  box-shadow: 0px -10px 10px 10px;
+  z-index: 1; /* 레이어 순위(숫자가 높을수록 상위 레이어 */
+}
+
+.text {
+  width: 1000px;
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  align-items: center; /* 박스 안 컨텐츠 세로 중앙정렬 */
+}
+
+.title {
+  padding: 0px;
+  height: 20px;
+  list-style: none;
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  margin-right: auto;
+  justify-content: flex-start;
+}
+
+.ul {
+  padding: 0px;
+  list-style: none;
+  display: flex; /* 인접한 요소 세로배치(Home.js) */
+  flex: none;
+  margin-left: auto;
+  justify-content: space-between;
+}
+
+.li {
+  height: 20px;
+  margin-left: 30px;
+}
