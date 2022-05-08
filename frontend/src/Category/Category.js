@@ -16,7 +16,6 @@ function Category() {
     <div className={styles.main}>
       <ul className={styles.ul}>
         <Li category="Categoey1" />
-
         <Li category="Categoey2" />
         <Li category="Categoey3" />
         <Li category="Categoey4" />

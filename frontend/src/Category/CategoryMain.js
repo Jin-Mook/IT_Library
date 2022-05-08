@@ -1,6 +1,6 @@
 import Search from "../components/Search";
-import List from "./List";
 import styles from "./CategoryMain.module.css";
+import Pagenation from "../Pagenation/Pagenation";
 
 function CategoryMain() {
   return (
@@ -14,9 +14,8 @@ function CategoryMain() {
           <div>찜한순</div>
           <div>도서평순</div>
         </div>
-        <div className={styles.pagenation}>pagenation</div>
+        <Pagenation />
       </div>
-      <List />
     </div>
   );
 }

@@ -4,20 +4,12 @@
   height: 80px;
   display: grid;
   grid-template-rows: 1fr 1fr;
+  align-items: center;
   border: 1px solid black;
 }
 
 .sortList {
-  margin: 0px auto;
-  width: 500px;
-  height: 20px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border: 1px solid black;
-}
-
-.pagenation {
-  margin: 0px auto;
+  margin: 0 auto;
   width: 500px;
   height: 20px;
   display: grid;
