@@ -156,6 +156,6 @@ REFERENCES `Chat_rooms` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `Chat_messages` ADD CONSTRAINT `fk_Chat_messages_user_id` FOREIGN KEY(`user_id`)
 REFERENCES `Users` (`id`);
 
-load data infile '/var/lib/mysql_files/category.csv' into table Book_categories fields terminated by ',' enclosed by '"' lines terminated by '\n' ignore 1 rows;
+load data infile '/var/lib/mysql_files/category.csv' into table Book_categories fields terminated by ',' enclosed by '"' lines terminated by '\r\n' ignore 1 rows;
 
-load data infile '/var/lib/mysql_files/final_data.csv' into table Books fields terminated by ',' enclosed by '"' lines terminated by '\n' ignore 1 rows (@id, @title, @image, @writer, @publisher, @date, book_category, @info, @rating, @count, @comment) set book_writer = nullif(@writer, ''), book_publisher = nullif(@publisher, ''), book_publish_date = nullif(@date, ''), book_info = nullif(@info, '');
+load data infile '/var/lib/mysql_files/final_data.csv' into table Books fields terminated by ',' enclosed by '"' lines terminated by '\n' ignore 1 rows (@id, @title, @image, @writer, @publisher, @date, book_category, @info, @rating, @count, @comment) set book_title=@title, book_image=@image, book_writer = nullif(@writer, ''), book_publisher = nullif(@publisher, ''), book_publish_date = nullif(@date, ''), book_info = nullif(@info, '');

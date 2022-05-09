@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  backend:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./backend
+  # backend:
+  #   build:
+  #     dockerfile: Dockerfile.dev
+  #     context: ./backend
     
-    volumes:
-      - /app/node_modules
-      - ./backend:/app
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./backend:/app
     
-    container_name: it_library_backend
+  #   container_name: it_library_backend
 
-    ports:
-      - "8000:8000"
+  #   ports:
+  #     - "8000:8000"
 
-    depends_on:
-      - mysql
+  #   depends_on:
+  #     - mysql
 
   mysql:
-    platform: linux/amd64
+    # platform: linux/amd64
     build: ./mysql
 
     restart: unless-stopped
