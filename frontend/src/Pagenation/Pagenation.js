@@ -5,38 +5,52 @@ function Pagenation() {
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
   const [showBooks, setShowBooks] = useState([]); //화면에 표시될 책 목록
   const [index, setIndex] = useState(0);
+  const [totalLength, setTotalLength] = useState(0);
+  const [pagenationNum, setPagenationNum] = useState(10);
 
   async function data() {
     const response = await fetch("http://localhost:3000/data/data(rating).json");
     const result = await response.json();
     setAllBooks(result.data);
-    setShowBooks(result.data.slice(0, 5)); // 한 페이지에 0~4 총 5개의 책 표시
+    setTotalLength(result.data.length);
+    setShowBooks(result.data.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
   }
 
   useEffect(() => {
-    // 한번만 렌더링 되게 해주는 것?
-    // 생각보다 중요하네 알아보자
+    // 값이 변할 때 마다 리렌더링
     data();
-  }, []);
+  }, [pagenationNum]);
 
   function handleLeftBtn() {
     if (index === 0) {
-      setShowBooks(allBooks.slice(35));
-      setIndex(35);
+      setShowBooks(allBooks.slice(30));
+      setIndex(30);
     } else {
-      setShowBooks(allBooks.slice(index - 5, index));
-      setIndex(index - 5);
+      setShowBooks(allBooks.slice(index - pagenationNum, index));
+      setIndex(index - pagenationNum);
     }
   }
 
   function handleRightBtn() {
-    if (index === 35) {
-      setShowBooks(allBooks.slice(0, 5));
+    if (index === 30) {
+      setShowBooks(allBooks.slice(0, pagenationNum));
       setIndex(0);
     } else {
-      setShowBooks(allBooks.slice(index + 5, index + 10));
-      setIndex(index + 5);
+      setShowBooks(allBooks.slice(index + pagenationNum, index + pagenationNum * 2));
+      setIndex(index + pagenationNum);
     }
+  }
+
+  function change10() {
+    setPagenationNum(10);
+    setShowBooks(allBooks.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
+    console.log("10");
+  }
+
+  function change20() {
+    setPagenationNum(20);
+    setShowBooks(allBooks.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
+    console.log("20");
   }
 
   function ShowList(value) {
@@ -61,6 +75,15 @@ function Pagenation() {
     );
   }
 
+  function pageNum() {
+    const num = totalLength / 5; // num = 8(40개일 때)
+    for (var i = 1; i <= num; i++) {
+      console.log(i);
+      // setPagenationNum([...pagenationNum, i]);
+    }
+    return console.log(pagenationNum);
+  }
+
   return (
     <div>
       <div>
@@ -68,21 +91,15 @@ function Pagenation() {
           <span className={styles.prev} onClick={handleLeftBtn}>
             {"<"}
           </span>
-          <li className={styles.index}>1</li>
-          <li className={styles.index}>2</li>
-          <li className={styles.index}>3</li>
-          <li className={styles.index}>4</li>
-          <li className={styles.index}>5</li>
-          <li className={styles.index}>6</li>
-          <li className={styles.index}>7</li>
-          <li className={styles.index}>8</li>
-          <li className={styles.index}>9</li>
-          <li className={styles.index}>10</li>
+          <button onClick={pageNum} />
           <span className={styles.next} onClick={handleRightBtn}>
             {">"}
           </span>
         </ul>
       </div>
+      {`page(${index / pagenationNum + 1}/4)`}
+      <button onClick={change10}>10</button>
+      <button onClick={change20}>20</button>
       <div className={styles.main}>
         {showBooks.map((value) => (
           <div key={value.key}>{ShowList(value)}</div> // map함수에선 결과값 최상단에 key값을 부여해야 함.

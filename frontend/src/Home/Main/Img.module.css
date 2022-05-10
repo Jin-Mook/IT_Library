@@ -1,15 +1,15 @@
 .flip {
-  height: 250px;
-  width: 166px;
+  height: 175px;
+  width: 116px;
   display: flex; /* 인접한 요소 가로배치(Home.js) */
   perspective: 1100px;
 }
 
 .card {
-  height: 250px;
-  width: 166px;
+  height: 175px;
+  width: 116px;
   position: relative;
-  transition: 1s;
+  transition: 0.5s; /* 플립 되는 속도 */
   transform-style: preserve-3d;
 }
 
@@ -22,8 +22,8 @@
 .front,
 .back {
   position: absolute;
-  height: 250px;
-  width: 166px;
+  height: 175px;
+  width: 116px;
   backface-visibility: hidden;
 }
 

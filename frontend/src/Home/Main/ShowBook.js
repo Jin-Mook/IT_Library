@@ -11,32 +11,30 @@ function ShowBook({ text }) {
     const response = await fetch("http://localhost:3000/data/data(rating).json");
     const result = await response.json();
     setAllBooks(result.data);
-    setShowBooks(result.data.slice(0, 4));
+    setShowBooks(result.data.slice(0, 5));
   }
 
   function handleLeftBtn() {
     if (index === 0) {
-      setShowBooks(allBooks.slice(36));
-      setIndex(36);
+      setShowBooks(allBooks.slice(35));
+      setIndex(35);
     } else {
-      setShowBooks(allBooks.slice(index - 4, index));
-      setIndex(index - 4);
+      setShowBooks(allBooks.slice(index - 1, index + 4));
+      setIndex(index - 1);
     }
   }
 
   function handleRightBtn() {
-    if (index === 36) {
-      setShowBooks(allBooks.slice(0, 4));
+    if (index === 35) {
+      setShowBooks(allBooks.slice(0, 5));
       setIndex(0);
     } else {
-      setShowBooks(allBooks.slice(index + 4, index + 8));
-      setIndex(index + 4);
+      setShowBooks(allBooks.slice(index + 1, index + 6));
+      setIndex(index + 1);
     }
   }
 
   useEffect(() => {
-    // 한번만 렌더링 되게 해주는 것?
-    // 생각보다 중요하네 알아보자
     data();
   }, []);
 
