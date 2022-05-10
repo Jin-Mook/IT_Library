@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/* react-router-dom 6버전부터 바뀜 */}
           <Route path="/:category" element={<CategoryMain />} />
-          <Route path="/:result" element={<Result />} />
+          <Route path="/search" element={<Result />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
@@ -32,3 +32,5 @@ function App() {
 }
 
 export default App;
+
+// /search?title=제목&view=한페이지 책 갯수

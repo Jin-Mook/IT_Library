@@ -26,7 +26,7 @@ function Search() {
         value={search}
         autoFocus={true}
       />
-      <Link to={`/${search}`} state={{ search: search }}>
+      <Link to={`/search?title=${search}`} state={{ search: search }}>
         {/* state를 사용하여 변수를 결과창으로 전달 */}
         <Button src="images/search.png" />
       </Link>
@@ -35,3 +35,5 @@ function Search() {
 }
 
 export default Search;
+
+// /search?title=제목&view=한페이지 책 갯수
