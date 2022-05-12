@@ -32,5 +32,3 @@ function App() {
 }
 
 export default App;
-
-// /search?title=제목&view=한페이지 책 갯수

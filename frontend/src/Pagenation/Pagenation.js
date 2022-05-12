@@ -1,18 +1,19 @@
 import styles from "./Pagenation.module.css";
 import { useState, useEffect } from "react";
+import PagenationBtn from "./PagenationBtn";
 
 function Pagenation() {
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
-  const [showBooks, setShowBooks] = useState([]); //화면에 표시될 책 목록
+  const [showBooks, setShowBooks] = useState([]); // 화면에 표시될 책 목록
   const [index, setIndex] = useState(0);
-  const [totalLength, setTotalLength] = useState(0);
   const [pagenationNum, setPagenationNum] = useState(10);
+  const [pageNum, setPageNum] = useState([]); // 총 페이지 수를 배열에 하나하나 저장
+  const [pageArr, setPageArr] = useState([]); // 페이지네이션 출력 페이지
 
   async function data() {
     const response = await fetch("http://localhost:3000/data/data(rating).json");
     const result = await response.json();
     setAllBooks(result.data);
-    setTotalLength(result.data.length);
     setShowBooks(result.data.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
   }
 
@@ -42,12 +43,14 @@ function Pagenation() {
   }
 
   function change10() {
+    // 페이지 내 게시글 수 (10개 보여주기로 지정)
     setPagenationNum(10);
     setShowBooks(allBooks.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
     console.log("10");
   }
 
   function change20() {
+    // 페이지 내 게시글 수 (10개 보여주기로 지정)
     setPagenationNum(20);
     setShowBooks(allBooks.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
     console.log("20");
@@ -75,15 +78,6 @@ function Pagenation() {
     );
   }
 
-  function pageNum() {
-    const num = totalLength / 5; // num = 8(40개일 때)
-    for (var i = 1; i <= num; i++) {
-      console.log(i);
-      // setPagenationNum([...pagenationNum, i]);
-    }
-    return console.log(pagenationNum);
-  }
-
   return (
     <div>
       <div>
@@ -91,12 +85,13 @@ function Pagenation() {
           <span className={styles.prev} onClick={handleLeftBtn}>
             {"<"}
           </span>
-          <button onClick={pageNum} />
+          {/* <PagenationBtn /> */}
           <span className={styles.next} onClick={handleRightBtn}>
             {">"}
           </span>
         </ul>
       </div>
+
       {`page(${index / pagenationNum + 1}/4)`}
       <button onClick={change10}>10</button>
       <button onClick={change20}>20</button>
