@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module';
 import { MainPageModule } from './mainPage/mainpage.module';
 import { CategoryModule } from './category/category.module';
@@ -10,6 +10,7 @@ import { LiveChatModule } from './liveChat/livechat.module';
 import { ChatRoomModule } from './chatRoom/chatroom.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config } from 'ormconfig';
+import { LoggerMiddleware } from 'src/common/middleware/logger.middleware';
 
 @Module({
   imports: [
@@ -25,4 +26,8 @@ import { config } from 'ormconfig';
     ChatRoomModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
+}

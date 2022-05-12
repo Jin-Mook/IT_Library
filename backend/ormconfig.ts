@@ -14,7 +14,7 @@ export const config: TypeOrmModuleOptions = {
   type: 'mysql',
   host: process.env.HOST,
   port: +process.env.PORT,
-  username: process.env.USERNAME,
+  username: process.env.USER_NAME,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
   entities: [
