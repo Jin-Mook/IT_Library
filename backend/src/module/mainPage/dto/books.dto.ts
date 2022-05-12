@@ -5,4 +5,5 @@ export class BookInfoDto {
   book_publish_date: Date;
   book_rating: number;
   book_like_count: number;
+  book_category: number;
 }
