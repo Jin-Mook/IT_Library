@@ -29,10 +29,11 @@ export class MainPageRepository {
             'book.id',
             'book.book_title',
             'book.book_image',
-            'book_writer',
+            'book.book_writer',
             'book.book_publish_date',
             'book.book_rating',
             'book.book_like_count',
+            'book.book_category',
           ])
           .orderBy(`book.${el}`, 'DESC')
           .where(`not book.${el} is null`)
@@ -62,6 +63,7 @@ export class MainPageRepository {
         'book.book_publish_date',
         'book.book_rating',
         'book.book_like_count',
+        'book.book_category',
       ])
       .where(`book.book_title like '%${title}%'`)
       .offset(view * (page - 1))
