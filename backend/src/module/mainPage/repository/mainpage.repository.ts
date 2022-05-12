@@ -50,4 +50,24 @@ export class MainPageRepository {
     const categories = await this.bookCategoriesModel.find();
     return categories;
   }
+
+  async findMainpageBooksWithTitle(title: string, view: number, page: number) {
+    const books = this.booksModel
+      .createQueryBuilder('book')
+      .select([
+        'book.id',
+        'book.book_title',
+        'book.book_image',
+        'book.book_writer',
+        'book.book_publish_date',
+        'book.book_rating',
+        'book.book_like_count',
+      ])
+      .where(`book.book_title like '%${title}%'`)
+      .offset(view * (page - 1))
+      .limit(view)
+      .getManyAndCount();
+
+    return books;
+  }
 }
