@@ -67,5 +67,55 @@ export class CategoryRepository {
     return books;
   }
 
-  async findCategoryBooksWithTitle() {}
+  async findCategoryBooksWithTitle(
+    sortMethod: number,
+    page: number,
+    view: number,
+    categoryId: number,
+    title: string,
+  ) {
+    let books;
+    // 기본순(도서명순인 경우)
+    if (sortMethod === 1) {
+      books = await this.booksModel
+        .createQueryBuilder('book')
+        .select([
+          'book.id',
+          'book.book_title',
+          'book.book_image',
+          'book.book_writer',
+          'book.book_publish_date',
+          'book.book_rating',
+          'book.book_like_count',
+          'book.book_category',
+        ])
+        .where(`book.book_category = ${categoryId}`)
+        .andWhere(`book.book_title like '%${title}%'`)
+        .offset(view * (page - 1))
+        .limit(view)
+        .orderBy(`book.${this.orderCondition[sortMethod - 1]}`, 'ASC')
+        .getManyAndCount();
+    } else {
+      books = await this.booksModel
+        .createQueryBuilder('book')
+        .select([
+          'book.id',
+          'book.book_title',
+          'book.book_image',
+          'book.book_writer',
+          'book.book_publish_date',
+          'book.book_rating',
+          'book.book_like_count',
+          'book.book_category',
+        ])
+        .where(`book.book_category = ${categoryId}`)
+        .andWhere(`book.book_title like '%${title}%'`)
+        .offset(view * (page - 1))
+        .limit(view)
+        .orderBy(`book.${this.orderCondition[sortMethod - 1]}`, 'DESC')
+        .getManyAndCount();
+    }
+
+    return books;
+  }
 }
