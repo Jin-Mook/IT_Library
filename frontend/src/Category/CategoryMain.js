@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Search from "../components/Search";
-import styles from "./Pagenation.module.css";
+import styles from "./CategoryMain.module.css";
 import axios from "axios";
 
-function Pagenation() {
+function CategoryMain() {
   // 결과창
   let location = useLocation(); //location 객체를 location 변수에 저장
   const categoryId = location.state.id; // location으로 데이터에 접근해서 받아온다!
@@ -132,4 +132,4 @@ function Pagenation() {
   );
 }
 
-export default Pagenation;
+export default CategoryMain;
