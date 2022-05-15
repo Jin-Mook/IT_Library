@@ -5,7 +5,7 @@ import Result from "./Result/Result";
 import styles from "./App.module.css";
 import Login from "./SignIn/Login";
 import SignUp from "./SignIn/SignUp";
-import CategoryMain from "./Category/CategoryMain";
+import Pagenation from "./Category/Pagenation";
 
 function App() {
   const onClick = () => {
@@ -18,7 +18,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} /> {/* react-router-dom 6버전부터 바뀜 */}
-          <Route path="/:category" element={<CategoryMain />} />
+          <Route path="/category" element={<Pagenation />} />
           <Route path="/search" element={<Result />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

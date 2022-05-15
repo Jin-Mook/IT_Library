@@ -8,13 +8,14 @@
   margin: 0px;
   list-style: none; /* li 점 삭제 */
   padding-left: 0px; /* li 들여쓰기 공간 삭제 */
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-content: space-between;
 }
 
 .li {
-  padding: 15px 30px;
-  width: 10%;
+  padding: 15px 15px 15px 30px;
   height: 15px;
   cursor: pointer;
   font-size: 15px;

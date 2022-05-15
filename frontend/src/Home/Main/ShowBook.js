@@ -11,8 +11,6 @@ function ShowBook({ text, value }) {
   async function data() {
     const response = await axios.get("http://localhost:8000/api/mainPage/all");
     const result = await response.data;
-
-    console.log(value);
     setAllBooks(result[value]);
     setShowBooks(result[value].slice(0, 5)); // 첫 화면에 보여질 부분 선택
   }
@@ -20,8 +18,8 @@ function ShowBook({ text, value }) {
   function handleLeftBtn() {
     // 왼쪽 버튼을 눌렀을 때 하나 씩 넘어가게 구현
     if (index === 0) {
-      setShowBooks(allBooks.slice(35));
-      setIndex(35);
+      setShowBooks(allBooks.slice(5));
+      setIndex(5);
     } else {
       setShowBooks(allBooks.slice(index - 1, index + 4));
       setIndex(index - 1);
@@ -30,7 +28,7 @@ function ShowBook({ text, value }) {
 
   function handleRightBtn() {
     // 오른쪽 버튼을 눌렀을 때 하나 씩 넘어가게 구현
-    if (index === 35) {
+    if (index === 5) {
       setShowBooks(allBooks.slice(0, 5));
       setIndex(0);
     } else {
@@ -63,7 +61,7 @@ function ShowBook({ text, value }) {
           />
         ))}
       </div>
-      {`page(${index / 4 + 1}/10)`}
+      {`page(${index + 1}/6)`}
     </div>
   );
 }

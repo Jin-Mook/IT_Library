@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./Search.module.css";
 import Button from "./Button";
 
-function Search() {
+function Search({ value = "" }) {
   // 검색창
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(value);
 
   const onSubmit = (e) => {
     e.preventDefault(); // 엔터 press 시 자동 submit 막는 기능

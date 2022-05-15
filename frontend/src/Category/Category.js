@@ -1,39 +1,36 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Category.module.css";
-
-function Li({ category }) {
-  return (
-    <li className={styles.li}>
-      <Link to={`/${category}`} state={{ category: category }}>
-        {category}
-      </Link>
-    </li>
-  );
-}
+import axios from "axios";
 
 function Category() {
+  const [categories, setCategories] = useState([]);
+
+  async function data() {
+    const response = await axios.get(`http://localhost:8000/api/mainPage/all`);
+    const result = await response.data;
+    setCategories(result.categories);
+  }
+
+  useEffect(() => {
+    data();
+  }, []);
+
+  function Li({ category, id }) {
+    return (
+      <li className={styles.li}>
+        <Link to={`/category?${id}`} state={{ id: id }}>
+          {category}
+        </Link>
+      </li>
+    );
+  }
   return (
     <div className={styles.main}>
       <ul className={styles.ul}>
-        <Li category="Categoey1" />
-        <Li category="Categoey2" />
-        <Li category="Categoey3" />
-        <Li category="Categoey4" />
-        <Li category="Categoey5" />
-      </ul>
-      <ul className={styles.ul}>
-        <Li category="Categoey6" />
-        <Li category="Categoey7" />
-        <Li category="Categoey8" />
-        <Li category="Categoey9" />
-        <Li category="Categoey10" />
-      </ul>
-      <ul className={styles.ul}>
-        <Li category="Categoey11" />
-        <Li category="Categoey12" />
-        <Li category="Categoey13" />
-        <Li />
-        <Li />
+        {categories.map((value) => {
+          return <Li id={value.id} key={value.id} category={`${value.category}`} />;
+        })}
       </ul>
     </div>
   );

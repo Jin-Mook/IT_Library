@@ -1,22 +1,23 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Search from "../components/Search";
-import styles from "./Result.module.css";
+import styles from "./Pagenation.module.css";
 import axios from "axios";
 
-function Result() {
+function Pagenation() {
   // 결과창
   let location = useLocation(); //location 객체를 location 변수에 저장
-  const searchResult = location.state.search; // location으로 데이터에 접근해서 받아온다!
+  const categoryId = location.state.id; // location으로 데이터에 접근해서 받아온다!
 
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
   const [page, setPage] = useState(1);
   const [showNum, setShowNum] = useState(10);
   const [maxPage, setMaxPage] = useState();
+  const [sort, setSort] = useState(1);
 
   async function data() {
     const response = await axios.get(
-      `http://localhost:8000/api/mainPage/search?title=${searchResult}&view=${showNum}&page=${page}`
+      `http://localhost:8000/api/category/${categoryId}?sortMethod=${sort}&page=${page}&view=${showNum}`
     );
     const result = await response.data;
     setAllBooks(result.books);
@@ -26,7 +27,7 @@ function Result() {
   useEffect(() => {
     // 값이 변할 때 마다 리렌더링
     data();
-  }, [showNum, page]);
+  }, [showNum, page, sort]);
 
   function handleLeftBtn() {
     if (page === 1) {
@@ -54,6 +55,46 @@ function Result() {
     setShowNum(20);
   }
 
+  function sortChange(e) {
+    setSort(e.target.value);
+  }
+
+  function Info() {
+    return (
+      <div className={styles.main}>
+        <div className={styles.sortList}>
+          <button value={1} onClick={sortChange} className={styles.infoBtn}>
+            기본순
+          </button>
+          <button value={2} onClick={sortChange} className={styles.infoBtn}>
+            신작순
+          </button>
+          <button value={3} onClick={sortChange} className={styles.infoBtn}>
+            평점순
+          </button>
+          <button value={4} onClick={sortChange} className={styles.infoBtn}>
+            찜한순
+          </button>
+        </div>
+        <ul className={styles.page}>
+          <span className={styles.prev} onClick={handleLeftBtn}>
+            {"<"}
+          </span>
+          <span className={styles.next} onClick={handleRightBtn}>
+            {">"}
+          </span>
+        </ul>
+        {`page(${page}/${maxPage})`}
+        <button onClick={change10} className={styles.infoBtn}>
+          10
+        </button>
+        <button onClick={change20} className={styles.infoBtn}>
+          20
+        </button>
+      </div>
+    );
+  }
+
   function ShowList(value) {
     return (
       <div className={styles.list}>
@@ -79,21 +120,9 @@ function Result() {
   return (
     <div>
       <div>
-        <Search value={searchResult} />
-        <ul className={styles.page}>
-          <span className={styles.prev} onClick={handleLeftBtn}>
-            {"<"}
-          </span>
-          {/* <PagenationBtn /> */}
-          <span className={styles.next} onClick={handleRightBtn}>
-            {">"}
-          </span>
-        </ul>
-        {`page(${page}/${maxPage})`}
-        <button onClick={change10}>10</button>
-        <button onClick={change20}>20</button>
+        <Search />
+        <Info />
       </div>
-      {`'${searchResult}'의 검색결과`}
       <div className={styles.main}>
         {allBooks.map((value) => (
           <div key={value.id}>{ShowList(value)}</div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
@@ -103,4 +132,4 @@ function Result() {
   );
 }
 
-export default Result;
+export default Pagenation;
