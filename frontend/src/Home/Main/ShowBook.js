@@ -1,20 +1,24 @@
 import Img from "./Img";
 import styles from "./ShowBook.module.css";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-function ShowBook({ text }) {
+function ShowBook({ text, value }) {
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
   const [showBooks, setShowBooks] = useState([]); //화면에 표시될 책 목록
   const [index, setIndex] = useState(0);
 
   async function data() {
-    const response = await fetch("http://localhost:3000/data/data(rating).json");
-    const result = await response.json();
-    setAllBooks(result.data);
-    setShowBooks(result.data.slice(0, 5));
+    const response = await axios.get("http://localhost:8000/api/mainPage/all");
+    const result = await response.data;
+
+    console.log(value);
+    setAllBooks(result[value]);
+    setShowBooks(result[value].slice(0, 5)); // 첫 화면에 보여질 부분 선택
   }
 
   function handleLeftBtn() {
+    // 왼쪽 버튼을 눌렀을 때 하나 씩 넘어가게 구현
     if (index === 0) {
       setShowBooks(allBooks.slice(35));
       setIndex(35);
@@ -25,6 +29,7 @@ function ShowBook({ text }) {
   }
 
   function handleRightBtn() {
+    // 오른쪽 버튼을 눌렀을 때 하나 씩 넘어가게 구현
     if (index === 35) {
       setShowBooks(allBooks.slice(0, 5));
       setIndex(0);
@@ -50,10 +55,10 @@ function ShowBook({ text }) {
       <div className={styles.img}>
         {showBooks.map((value) => (
           <Img
-            key={value.key}
+            key={value.id}
             author={value.author}
-            title={value.title}
-            coverImg={value.coverimg}
+            title={value.book_title}
+            coverImg={value.book_image}
             id={value.key}
           />
         ))}

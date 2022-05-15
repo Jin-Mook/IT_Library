@@ -8,11 +8,12 @@ function Search() {
   const [search, setSearch] = useState("");
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    setSearch("");
+    e.preventDefault(); // 엔터 press 시 자동 submit 막는 기능
+    setSearch(""); // submit 시 검색 창 글자 초기화
   };
 
   const onChange = (e) => {
+    // 검색 창에 입력된 글자를 받아오는 함수
     setSearch(e.target.value);
   };
 

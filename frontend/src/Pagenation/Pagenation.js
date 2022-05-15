@@ -1,6 +1,7 @@
 import styles from "./Pagenation.module.css";
 import { useState, useEffect } from "react";
 import PagenationBtn from "./PagenationBtn";
+import axios from "axios";
 
 function Pagenation() {
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
@@ -11,8 +12,8 @@ function Pagenation() {
   const [pageArr, setPageArr] = useState([]); // 페이지네이션 출력 페이지
 
   async function data() {
-    const response = await fetch("http://localhost:3000/data/data(rating).json");
-    const result = await response.json();
+    const response = axios.get("http://localhost:8000/api/category/:categoryId");
+    const result = await response.data;
     setAllBooks(result.data);
     setShowBooks(result.data.slice(0, pagenationNum)); // 한 페이지에 0~4 총 5개의 책 표시
   }
