@@ -6,10 +6,11 @@ import { RegisterDto } from './dto/register.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // 닉네임 중복 확인
+  // 닉네임 또는 이메일 중복 확인 및 이메일 인증코드 발송
   @Get('check')
-  async checkNickname(@Query('nickname') nickname: string) {
-    return this.authService.checkNickname(nickname);
+  async checkNickname(@Query() query: { nickname?: string; email?: string }) {
+    if (query.nickname) return this.authService.checkNickname(query.nickname);
+    else return this.authService.checkEmail(query.email);
   }
 
   // 회원가입

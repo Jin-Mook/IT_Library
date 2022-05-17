@@ -11,6 +11,7 @@ export class AuthService {
     private readonly emailService: EmailService,
   ) {}
 
+  // 닉네임 체크 함수
   async checkNickname(nickname: string): Promise<ResponseDto> {
     const exNicknameId = await this.authRepository.checkNickname(nickname);
 
@@ -20,22 +21,42 @@ export class AuthService {
     return { success: true, message: '사용 가능한 닉네임 입니다.' };
   }
 
+  // 이메일 체크 및 인증코드 전송 함수
+  async checkEmail(email: string) {
+    const exEmailId = await this.authRepository.checkEmail(email);
+
+    if (exEmailId)
+      throw new NotAcceptableException('이미 존재하는 이메일 입니다.');
+
+    const verifyCode = this.makeVerifyCode();
+    await this.emailService.sendMemberJoinVerification(email, verifyCode);
+    return {
+      success: true,
+      message: '인증코드 전송 완료',
+      code: verifyCode,
+    };
+  }
+
+  // 회원가입 함수
   async registerUser(
     nickname: string,
     email: string,
     password: string,
   ): Promise<ResponseDto> {
-    // await this.checkNickname(nickname);
+    await this.checkNickname(nickname);
 
     const saltOrRounds = +process.env.HASH;
     const hashedPassword = await bcrpyt.hash(password, saltOrRounds);
     await this.authRepository.registerUser(nickname, email, hashedPassword);
 
-    const veryfyNumber = 1234;
-    await this.emailService.sendMemberJoinVerification(email, veryfyNumber);
     return {
       success: true,
-      message: '회원가입 완료, 이메일 인증이 필요합니다.',
+      message: '회원가입 완료.',
     };
+  }
+
+  // 인증코드 만들어주는 함수
+  makeVerifyCode() {
+    return Math.random().toString(36).substring(2, 8);
   }
 }

@@ -20,12 +20,22 @@ export class AuthRepository {
     return exNicknameId;
   }
 
+  async checkEmail(email: string) {
+    const exEmailId = await this.usersModel
+      .createQueryBuilder('user')
+      .select('user.id')
+      .where(`user.email = '${email}'`)
+      .getOne();
+
+    return exEmailId;
+  }
+
   async registerUser(nickname, email, hashedPassword) {
     await this.usersModel
       .createQueryBuilder()
       .insert()
       .into(UsersEntity)
-      .values({ nickname, email, password: hashedPassword })
+      .values({ nickname, email, password: hashedPassword, email_check: true })
       .execute();
   }
 }

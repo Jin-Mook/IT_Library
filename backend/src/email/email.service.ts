@@ -25,20 +25,15 @@ export class EmailService {
     });
   }
 
-  async sendMemberJoinVerification(emailAddress: string, verifyNumber: number) {
-    const baseUrl = 'http://localhost:8000';
-
-    const url = `${baseUrl}/api/auth/email?verifyNumber=${verifyNumber}`;
-
+  async sendMemberJoinVerification(emailAddress: string, verifyCode: string) {
     const mailOptions: EmailOptions = {
       from: process.env.MAIL_EMAIL,
       to: emailAddress,
       subject: '가입 인증 메일',
       html: `
-        가입 확인 버튼을 누르시면 가입 인증이 완료됩니다.<br/>
-        <form action="${url}" method="POST">
-          <button>가입확인</button>
-        </form>
+        <h1>아래 인증코드를 이용해 이메일 인증을 진행해 주세요</h1>
+        <h2>인증코드</h2>
+        <h2>${verifyCode}</h2>
       `,
     };
 

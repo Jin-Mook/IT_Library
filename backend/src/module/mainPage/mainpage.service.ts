@@ -41,6 +41,7 @@ export class MainpageService {
       message: '책 검색 완료',
       books,
       maxPage: Math.ceil(maxCount / view),
+      totalBookCount: maxCount,
     };
 
     return result;
