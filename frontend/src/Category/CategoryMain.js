@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Search from "../components/Search";
 import styles from "./CategoryMain.module.css";
 import axios from "axios";
+import Pagination from "react-js-pagination";
 
 function CategoryMain() {
   // 결과창
@@ -13,6 +14,7 @@ function CategoryMain() {
   const [page, setPage] = useState(1);
   const [showNum, setShowNum] = useState(10);
   const [maxPage, setMaxPage] = useState();
+  const [pageArr, setPageArr] = useState([]);
   const [sort, setSort] = useState(1);
 
   async function data() {
@@ -29,21 +31,23 @@ function CategoryMain() {
     data();
   }, [showNum, page, sort]);
 
-  function handleLeftBtn() {
-    if (page === 1) {
-      console.log("First Page");
-    } else {
-      setPage(page - 1);
-    }
-  }
+  const Paging = () => {
+    return (
+      <Pagination
+        activePage={page}
+        itemsCountPerPage={showNum}
+        totalItemsCount={maxPage * 10}
+        pageRangeDisplayed={10}
+        prevPageText="‹"
+        nextPageText="›"
+        onChange={handlePageChange}
+      />
+    );
+  };
 
-  function handleRightBtn() {
-    if (page === maxPage) {
-      console.log("Last Page");
-    } else {
-      setPage(page + 1);
-    }
-  }
+  const handlePageChange = (e) => {
+    setPage(e);
+  };
 
   function change10() {
     // 페이지 내 게시글 수 (10개 보여주기로 지정)
@@ -76,13 +80,8 @@ function CategoryMain() {
             찜한순
           </button>
         </div>
-        <ul className={styles.page}>
-          <span className={styles.prev} onClick={handleLeftBtn}>
-            {"<"}
-          </span>
-          <span className={styles.next} onClick={handleRightBtn}>
-            {">"}
-          </span>
+        <ul className={styles.paging}>
+          <Paging />
         </ul>
         {`page(${page}/${maxPage})`}
         <button onClick={change10} className={styles.infoBtn}>

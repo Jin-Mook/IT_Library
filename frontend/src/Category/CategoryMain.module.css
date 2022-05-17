@@ -52,29 +52,7 @@
   cursor: pointer;
 }
 
-.page {
-  list-style: none; /* li 점 삭제 */
-  padding-left: 0px; /* li 들여쓰기 공간 삭제 */
-  display: flex;
-}
-
 .index {
-  width: 20px;
-  height: 20px;
-  font-size: 18px;
-  text-align: center;
-  border: 1px solid black;
-}
-
-.prev {
-  width: 20px;
-  height: 20px;
-  font-size: 18px;
-  text-align: center;
-  border: 1px solid black;
-}
-
-.next {
   width: 20px;
   height: 20px;
   font-size: 18px;
