@@ -2,10 +2,14 @@ import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { ResponseDto } from 'src/common/dto/common.dto';
 import { AuthRepository } from './repository/auth.repository';
 import * as bcrpyt from 'bcrypt';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly authRepository: AuthRepository) {}
+  constructor(
+    private readonly authRepository: AuthRepository,
+    private readonly emailService: EmailService,
+  ) {}
 
   async checkNickname(nickname: string): Promise<ResponseDto> {
     const exNicknameId = await this.authRepository.checkNickname(nickname);
@@ -21,11 +25,14 @@ export class AuthService {
     email: string,
     password: string,
   ): Promise<ResponseDto> {
-    await this.checkNickname(nickname);
+    // await this.checkNickname(nickname);
+
     const saltOrRounds = +process.env.HASH;
-    console.log(typeof saltOrRounds);
     const hashedPassword = await bcrpyt.hash(password, saltOrRounds);
     await this.authRepository.registerUser(nickname, email, hashedPassword);
+
+    const veryfyNumber = 1234;
+    await this.emailService.sendMemberJoinVerification(email, veryfyNumber);
     return {
       success: true,
       message: '회원가입 완료, 이메일 인증이 필요합니다.',
