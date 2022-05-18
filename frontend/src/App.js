@@ -7,6 +7,7 @@ import styles from "./App.module.css";
 import Login from "./SignIn/Login";
 import SignUp from "./SignIn/SignUp";
 import CategoryMain from "./Category/CategoryMain";
+import BookDetail from "./Detail/BookDetail";
 
 function App() {
   const onClick = () => {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/search" element={<Result />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/detail" element={<BookDetail />} />
         </Routes>
       </Router>
       <button className={styles.topBtn} onClick={onClick}>

@@ -5,6 +5,7 @@ import styles from "./Result.module.css";
 import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
+import ShowList from "../components/ShowList";
 
 function Result() {
   // 결과창
@@ -30,28 +31,6 @@ function Result() {
     data();
   }, [showNum, page]);
 
-  function ShowList(value) {
-    return (
-      <div className={styles.list}>
-        <img
-          className={styles.img}
-          src={value.book_image}
-          alt="book_image"
-          key={value.id}
-        ></img>
-        <div className={styles.explain}>
-          <div>{value.book_title}</div>
-          <div>{value.book_writer}</div>
-          <div>{value.id}</div>
-        </div>
-        <div className={styles.btn_div}>
-          <button className={styles.btn}>상세보기</button>
-          <button className={styles.btn}>찜하기</button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div>
       <div>
@@ -67,7 +46,9 @@ function Result() {
       {`'${searchResult}'의 검색결과`}
       <div className={styles.main}>
         {allBooks.map((value) => (
-          <div key={value.id}>{ShowList(value)}</div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
+          <div key={value.id}>
+            <ShowList value={value} page={page} showNum={showNum} />
+          </div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
         ))}
       </div>
       <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />

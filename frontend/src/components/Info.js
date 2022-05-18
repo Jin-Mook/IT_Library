@@ -8,14 +8,22 @@ function Info({ page, showNum, maxPage, categoryName, setSort, setShowNum, setPa
 
   function change10() {
     // 페이지 내 게시글 수 (10개 보여주기로 지정)
-    setShowNum(10);
-    setPage(page * 2 - 1);
+    if (showNum === 10) {
+      console.log("이미 10개 입니다.");
+    } else {
+      setShowNum(10);
+      setPage(page * 2 - 1);
+    }
   }
 
   function change20() {
     // 페이지 내 게시글 수 (10개 보여주기로 지정)
-    setShowNum(20);
-    setPage(Math.ceil(page / 2));
+    if (showNum === 20) {
+      console.log("이미 20개 입니다.");
+    } else {
+      setShowNum(20);
+      setPage(Math.ceil(page / 2));
+    }
   }
   return (
     <div className={styles.main}>
