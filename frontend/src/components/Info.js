@@ -34,6 +34,7 @@ function Info({ page, showNum, maxPage, categoryName, setSort, setShowNum, setPa
         </button>
       </div>
       <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
+      {`page(${page}/${maxPage})`}
       <div>{categoryName}</div>
       <button onClick={change10} className={styles.infoBtn}>
         10

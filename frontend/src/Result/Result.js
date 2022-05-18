@@ -63,7 +63,6 @@ function Result() {
           setShowNum={setShowNum}
           setPage={setPage}
         />
-        {`page(${page}/${maxPage})`}
       </div>
       {`'${searchResult}'의 검색결과`}
       <div className={styles.main}>
@@ -71,6 +70,7 @@ function Result() {
           <div key={value.id}>{ShowList(value)}</div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
         ))}
       </div>
+      <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
     </div>
   );
 }

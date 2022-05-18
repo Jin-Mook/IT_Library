@@ -23,10 +23,10 @@
   cursor: default;
 }
 
-a {
+li.li a {
   text-decoration: none;
   color: black;
 }
-a:hover {
+li.li a:hover {
   text-decoration: underline;
 }
