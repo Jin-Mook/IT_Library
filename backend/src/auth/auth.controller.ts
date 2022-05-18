@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { LocalAuthGuard } from './guard/local-auth.guard';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 
@@ -18,5 +27,14 @@ export class AuthController {
   async registerUser(@Body() registerBody: RegisterDto) {
     const { nickname, email, password } = registerBody;
     return this.authService.registerUser(nickname, email, password);
+  }
+
+  // 로그인
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Req() req) {
+    console.log(req.sessionID);
+    console.log('session: ', req.session);
+    return req.user;
   }
 }

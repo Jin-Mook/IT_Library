@@ -1,4 +1,8 @@
-import { Injectable, NotAcceptableException } from '@nestjs/common';
+import {
+  Injectable,
+  NotAcceptableException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ResponseDto } from 'src/common/dto/common.dto';
 import { AuthRepository } from './repository/auth.repository';
 import * as bcrpyt from 'bcrypt';
@@ -55,8 +59,22 @@ export class AuthService {
     };
   }
 
+  // 로그인 인증 함수
+  async validateUser(email: string, password: string) {
+    const user = await this.authRepository.findUser(email);
+    if (user) {
+      const passwordCheck = await bcrpyt.compare(password, user.password);
+      if (passwordCheck) {
+        const { password, ...result } = user;
+        return result;
+      }
+      throw new UnauthorizedException('비밀번호가 틀렸습니다.');
+    }
+    throw new UnauthorizedException('존재하지 않는 유저입니다.');
+  }
+
   // 인증코드 만들어주는 함수
-  makeVerifyCode() {
+  private makeVerifyCode() {
     return Math.random().toString(36).substring(2, 8);
   }
 }
