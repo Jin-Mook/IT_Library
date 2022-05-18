@@ -6,6 +6,7 @@ import {
   Post,
   Query,
   Req,
+  Session,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -30,11 +31,11 @@ export class AuthController {
   }
 
   // 로그인
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard) // 가드를 통해 req.user에 passport의 return값을 넣어준다.
   @Post('login')
-  async login(@Req() req) {
-    console.log(req.sessionID);
-    console.log('session: ', req.session);
+  async login(@Req() req, @Session() session: Record<string | number, any>) {
+    const { id, nickname, ...rest } = req.user;
+    this.authService.inputUserInfoToSession(id, nickname, session);
     return req.user;
   }
 }

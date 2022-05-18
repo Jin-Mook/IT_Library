@@ -1,11 +1,7 @@
-import {
-  Injectable,
-  NotAcceptableException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { ResponseDto } from 'src/common/dto/common.dto';
 import { AuthRepository } from './repository/auth.repository';
-import * as bcrpyt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { EmailService } from 'src/email/email.service';
 
 @Injectable()
@@ -50,7 +46,7 @@ export class AuthService {
     await this.checkNickname(nickname);
 
     const saltOrRounds = +process.env.HASH;
-    const hashedPassword = await bcrpyt.hash(password, saltOrRounds);
+    const hashedPassword = await bcrypt.hash(password, saltOrRounds);
     await this.authRepository.registerUser(nickname, email, hashedPassword);
 
     return {
@@ -59,18 +55,10 @@ export class AuthService {
     };
   }
 
-  // 로그인 인증 함수
-  async validateUser(email: string, password: string) {
-    const user = await this.authRepository.findUser(email);
-    if (user) {
-      const passwordCheck = await bcrpyt.compare(password, user.password);
-      if (passwordCheck) {
-        const { password, ...result } = user;
-        return result;
-      }
-      throw new UnauthorizedException('비밀번호가 틀렸습니다.');
-    }
-    throw new UnauthorizedException('존재하지 않는 유저입니다.');
+  // 세션에 유저 정보를 저장하는 함수
+  inputUserInfoToSession(id: number, nickname: string, session) {
+    session.userId = id;
+    session.nickName = nickname;
   }
 
   // 인증코드 만들어주는 함수
