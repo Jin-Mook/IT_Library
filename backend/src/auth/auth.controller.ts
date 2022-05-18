@@ -6,11 +6,13 @@ import {
   Post,
   Query,
   Req,
+  Res,
   Session,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
+import { Response } from 'express';
 
 @Controller('/api/auth')
 export class AuthController {
@@ -25,17 +27,37 @@ export class AuthController {
 
   // 회원가입
   @Post('register')
-  async registerUser(@Body() registerBody: RegisterDto) {
+  async registerUser(
+    @Body() registerBody: RegisterDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const { nickname, email, password } = registerBody;
-    return this.authService.registerUser(nickname, email, password);
+    const result = await this.authService.registerUser(
+      nickname,
+      email,
+      password,
+    );
+    const { id, ...rest } = result.userInfo;
+    this.authService.makeCookie(res, id);
+
+    return result;
   }
 
   // 로그인
   @UseGuards(LocalAuthGuard) // 가드를 통해 req.user에 passport의 return값을 넣어준다.
   @Post('login')
-  async login(@Req() req, @Session() session: Record<string | number, any>) {
+  async login(
+    @Req() req,
+    @Session() session: Record<string | number, any>,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const { id, nickname, ...rest } = req.user;
-    this.authService.inputUserInfoToSession(id, nickname, session);
-    return req.user;
+    const result = this.authService.inputUserInfoToSession(
+      id,
+      nickname,
+      session,
+    );
+    this.authService.makeCookie(res, id);
+    return result;
   }
 }

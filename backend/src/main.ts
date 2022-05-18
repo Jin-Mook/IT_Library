@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './module/app.module';
 import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -15,6 +16,7 @@ async function bootstrap() {
       },
     }),
   );
+  app.use(cookieParser('my-secret'));
   await app.listen(8000);
 }
 bootstrap();

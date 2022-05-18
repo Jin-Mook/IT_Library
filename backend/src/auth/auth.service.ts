@@ -3,6 +3,7 @@ import { ResponseDto } from 'src/common/dto/common.dto';
 import { AuthRepository } from './repository/auth.repository';
 import * as bcrypt from 'bcrypt';
 import { EmailService } from 'src/email/email.service';
+import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -42,16 +43,25 @@ export class AuthService {
     nickname: string,
     email: string,
     password: string,
-  ): Promise<ResponseDto> {
+  ): Promise<{
+    success: boolean;
+    message: string;
+    userInfo: { id: number; nickname: string };
+  }> {
     await this.checkNickname(nickname);
 
     const saltOrRounds = +process.env.HASH;
     const hashedPassword = await bcrypt.hash(password, saltOrRounds);
     await this.authRepository.registerUser(nickname, email, hashedPassword);
+    const exUser = await this.authRepository.findUser(email);
 
     return {
       success: true,
       message: '회원가입 완료.',
+      userInfo: {
+        id: exUser.id,
+        nickname: exUser.nickname,
+      },
     };
   }
 
@@ -59,10 +69,28 @@ export class AuthService {
   inputUserInfoToSession(id: number, nickname: string, session) {
     session.userId = id;
     session.nickName = nickname;
+
+    return {
+      success: true,
+      message: '로그인 완료',
+      userInfo: {
+        id,
+        nickname,
+      },
+    };
   }
 
   // 인증코드 만들어주는 함수
   private makeVerifyCode() {
     return Math.random().toString(36).substring(2, 8);
+  }
+
+  // 쿠키를 전달하는 함수
+  makeCookie(res: Response, id: number) {
+    res.cookie('key', id, {
+      signed: false,
+      httpOnly: true,
+      secure: false,
+    });
   }
 }
