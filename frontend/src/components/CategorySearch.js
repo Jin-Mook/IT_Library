@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Search.module.css";
+import styles from "./CategorySearch.module.css";
 import Button from "./Button";
 
-function Search({ value = "" }) {
+function CategorySearch({ categoryId, categoryName, value = "" }) {
   // 검색창
-  const [search, setSearch] = useState(value);
+  const [search, setSearch] = useState(value); // 검색결과 저장
+  const [id] = useState(categoryId); // categoryMain에서 보내준 카테고리 아이디 저장
+  const [name] = useState(categoryName); // categoryMain에서 보내준 카테고리 아이디 저장
 
   const onSubmit = (e) => {
     e.preventDefault(); // 엔터 press 시 자동 submit 막는 기능
@@ -27,7 +29,10 @@ function Search({ value = "" }) {
         value={search}
         autoFocus={true}
       />
-      <Link to={`/search?title=${search}`} state={{ search: search }}>
+      <Link
+        to={`/category/search/${categoryId}?title=${search}`}
+        state={{ search: search, categoryId: id, categoryName: name }} // 검색결과와 카테고리 아이디 CategoryResult로 전달
+      >
         {/* state를 사용하여 변수를 결과창으로 전달 */}
         <Button src="images/search.png" />
       </Link>
@@ -35,4 +40,4 @@ function Search({ value = "" }) {
   );
 }
 
-export default Search;
+export default CategorySearch;

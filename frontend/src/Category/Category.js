@@ -19,7 +19,7 @@ function Category() {
   function Li({ category, id }) {
     return (
       <li className={styles.li}>
-        <Link to={`/category?${id}`} state={{ id: id }}>
+        <Link to={`/category?${id}`} state={{ id: id, category: category }}>
           {category}
         </Link>
       </li>

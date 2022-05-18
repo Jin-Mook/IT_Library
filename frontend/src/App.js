@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home/Home";
 import Nav from "./components/Nav";
+import CategoryResult from "./Result/CategoryResult";
 import Result from "./Result/Result";
 import styles from "./App.module.css";
 import Login from "./SignIn/Login";
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/* react-router-dom 6버전부터 바뀜 */}
           <Route path="/category" element={<CategoryMain />} />
+          <Route path="/category/search/:categoryId" element={<CategoryResult />} />
           <Route path="/search" element={<Result />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
