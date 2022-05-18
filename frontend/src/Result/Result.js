@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Search from "../components/Search";
 import styles from "./Result.module.css";
 import axios from "axios";
+import Paging from "../components/Paging";
+import Info from "../components/Info";
 
 function Result() {
   // 결과창
@@ -27,32 +29,6 @@ function Result() {
     // 값이 변할 때 마다 리렌더링
     data();
   }, [showNum, page]);
-
-  function handleLeftBtn() {
-    if (page === 1) {
-      console.log("First Page");
-    } else {
-      setPage(page - 1);
-    }
-  }
-
-  function handleRightBtn() {
-    if (page === maxPage) {
-      console.log("Last Page");
-    } else {
-      setPage(page + 1);
-    }
-  }
-
-  function change10() {
-    // 페이지 내 게시글 수 (10개 보여주기로 지정)
-    setShowNum(10);
-  }
-
-  function change20() {
-    // 페이지 내 게시글 수 (10개 보여주기로 지정)
-    setShowNum(20);
-  }
 
   function ShowList(value) {
     return (
@@ -80,18 +56,14 @@ function Result() {
     <div>
       <div>
         <Search value={searchResult} />
-        <ul className={styles.page}>
-          <span className={styles.prev} onClick={handleLeftBtn}>
-            {"<"}
-          </span>
-          {/* <PagenationBtn /> */}
-          <span className={styles.next} onClick={handleRightBtn}>
-            {">"}
-          </span>
-        </ul>
+        <Info
+          page={page}
+          showNum={showNum}
+          maxPage={maxPage}
+          setShowNum={setShowNum}
+          setPage={setPage}
+        />
         {`page(${page}/${maxPage})`}
-        <button onClick={change10}>10</button>
-        <button onClick={change20}>20</button>
       </div>
       {`'${searchResult}'의 검색결과`}
       <div className={styles.main}>
