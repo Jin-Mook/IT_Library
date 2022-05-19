@@ -4,4 +4,5 @@ import { BookInfoDto } from './books.dto';
 export class SearchResponseDto extends ResponseDto {
   books: BookInfoDto[];
   maxPage: number;
+  totalBookCount: number;
 }

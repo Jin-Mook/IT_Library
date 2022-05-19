@@ -23,6 +23,7 @@ export class CategoryService {
       message: '책 정보 전달 완료',
       books: booksResult[0],
       maxPage: Math.ceil(booksResult[1] / query.view),
+      totalBookCount: booksResult[1],
     };
   }
 
@@ -44,6 +45,7 @@ export class CategoryService {
       message: '책 정보 전달 완료',
       books: booksResult[0],
       maxPage: Math.ceil(booksResult[1] / query.view),
+      totalBookCount: booksResult[1],
     };
   }
 }

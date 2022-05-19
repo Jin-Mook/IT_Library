@@ -17,7 +17,11 @@ export class CategoryRepository {
     'book_like_count',
   ];
 
+<<<<<<< HEAD
   // 기본순, 신작순, 평점순, 찜한순, 도서명순
+=======
+  // 도서명순, 신작순, 평점순, 찜한순,
+>>>>>>> 6f38099376076f6c8ee0d2a0edd2ac2eabf20bc9
   async findCategoryBooks(
     sortMethod: number,
     page: number,
