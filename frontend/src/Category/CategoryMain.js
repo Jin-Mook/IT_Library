@@ -48,15 +48,9 @@ function CategoryMain() {
         />
       </div>
       <div className={styles.main}>
-        {allBooks.map((value, index) => (
+        {allBooks.map((value) => (
           <div key={value.id}>
-            <ShowList
-              id={value.id}
-              value={value}
-              index={index}
-              page={page}
-              showNum={showNum}
-            />
+            <ShowList value={value} />
           </div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
         ))}
       </div>

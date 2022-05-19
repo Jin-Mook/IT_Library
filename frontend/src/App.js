@@ -25,7 +25,7 @@ function App() {
           <Route path="/search" element={<Result />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/detail" element={<BookDetail />} />
+          <Route path="/detail/:bookId" element={<BookDetail />} />
         </Routes>
       </Router>
       <button className={styles.topBtn} onClick={onClick}>
