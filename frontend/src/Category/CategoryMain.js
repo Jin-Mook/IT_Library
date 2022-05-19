@@ -5,7 +5,6 @@ import styles from "./CategoryMain.module.css";
 import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
-import BookDetail from "../Detail/BookDetail";
 import ShowList from "../components/ShowList";
 
 function CategoryMain() {
@@ -51,7 +50,13 @@ function CategoryMain() {
       <div className={styles.main}>
         {allBooks.map((value, index) => (
           <div key={value.id}>
-            <ShowList value={value} index={index} page={page} showNum={showNum} />
+            <ShowList
+              id={value.id}
+              value={value}
+              index={index}
+              page={page}
+              showNum={showNum}
+            />
           </div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
         ))}
       </div>

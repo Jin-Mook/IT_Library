@@ -1,18 +1,24 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-function BookDetail({ bookId }) {
+function BookDetail() {
+  const [book, setBook] = useState();
+
+  let location = useLocation(); //location 객체를 location 변수에 저장
+  const id = location.state.id;
+
   async function data() {
-    const response = await axios.get(`http://localhost:8000/api/bookinfo/${bookId}`);
+    const response = await axios.get(`http://localhost:8000/api/bookinfo/${id}`);
     const result = await response.book;
-    console.log(result);
+    setBook(result);
   }
 
   useEffect(() => {
     data();
   }, []);
 
-  return;
+  return <h1>{book}</h1>;
 }
 
 export default BookDetail;

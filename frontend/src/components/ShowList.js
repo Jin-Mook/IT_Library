@@ -1,6 +1,10 @@
 import styles from "./ShowList.module.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-function ShowList({ page, showNum, value, index }) {
+function ShowList({ id, page, showNum, value, index }) {
+  // const [id, setId] = useState();
+  // setId(value.id);
   return (
     <div className={styles.list}>
       <img
@@ -16,9 +20,9 @@ function ShowList({ page, showNum, value, index }) {
         <div>{(page - 1) * showNum + (index + 1)}</div>
       </div>
       <div className={styles.btn_div}>
-        <button className={styles.btn} onClick={console.log(value.id)}>
-          상세보기
-        </button>
+        <Link to={`/detail?id=${id}`}>
+          <button className={styles.btn}>상세보기</button>
+        </Link>
         <button className={styles.btn}>찜하기</button>
       </div>
     </div>
