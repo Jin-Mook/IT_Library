@@ -1,0 +1,37 @@
+.main {
+  width: 700px;
+  margin: 0px auto;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-row-gap: 1px; /* grid row 사이 갭 */
+  padding: 1px;
+  border: 1px solid black;
+}
+
+.bookMain {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1px;
+  border: 1px solid rgb(255, 0, 0);
+}
+
+.title {
+  display: grid;
+  border: 1px solid black;
+}
+
+.img {
+  height: 262px;
+  width: 180px;
+  border: 1px solid black;
+}
+
+.bookInfo {
+  padding: 1px;
+  border: 1px solid rgb(255, 0, 0);
+}
+
+.comments {
+  padding: 1px;
+  border: 1px solid rgb(255, 0, 0);
+}

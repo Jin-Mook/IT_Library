@@ -1,6 +1,6 @@
 .flip {
   height: 175px;
-  width: 116px;
+  width: 120px;
   display: flex; /* 인접한 요소 가로배치(Home.js) */
   perspective: 1100px;
 }

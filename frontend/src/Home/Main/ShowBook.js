@@ -2,6 +2,7 @@ import Img from "./Img";
 import styles from "./ShowBook.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function ShowBook({ text, value }) {
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
@@ -52,13 +53,15 @@ function ShowBook({ text, value }) {
       </button>
       <div className={styles.img}>
         {showBooks.map((value) => (
-          <Img
-            key={value.id}
-            author={value.author}
-            title={value.book_title}
-            coverImg={value.book_image}
-            id={value.key}
-          />
+          <Link to={`/detail/${value.id}`} state={{ bookId: value.id }} key={value.id}>
+            <Img
+              key={value.id}
+              author={value.author}
+              title={value.book_title}
+              coverImg={value.book_image}
+              id={value.key}
+            />
+          </Link>
         ))}
       </div>
       {`page(${index + 1}/6)`}

@@ -50,9 +50,13 @@ function CategoryResult() {
       </div>
       <div className={styles.main}>
         {allBooks.map((value, index) => (
-          <div key={value.id}>
-            <ShowList value={value} index={index} page={page} showNum={showNum} />
-          </div> // map함수에선 결과값 최상단에 key값을 부여해야 함.
+          <ShowList
+            value={value}
+            index={index}
+            page={page}
+            showNum={showNum}
+            key={value.id}
+          />
         ))}
       </div>
       <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
