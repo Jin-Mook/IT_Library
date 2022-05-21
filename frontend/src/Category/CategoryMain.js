@@ -35,23 +35,19 @@ function CategoryMain() {
 
   return (
     <div>
-      <div>
-        <CategorySearch categoryId={categoryId} categoryName={categoryName} />
-        <Info
-          page={page}
-          showNum={showNum}
-          maxPage={maxPage}
-          categoryName={categoryName}
-          setSort={setSort}
-          setShowNum={setShowNum}
-          setPage={setPage}
-        />
-      </div>
-      <div className={styles.main}>
-        {allBooks.map((value) => (
-          <ShowList value={value} key={value.id} />
-        ))}
-      </div>
+      <CategorySearch categoryId={categoryId} categoryName={categoryName} />
+      <Info
+        page={page}
+        showNum={showNum}
+        maxPage={maxPage}
+        categoryName={categoryName}
+        setSort={setSort}
+        setShowNum={setShowNum}
+        setPage={setPage}
+      />
+      {allBooks.map((value) => (
+        <ShowList value={value} key={value.id} />
+      ))}
       <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
     </div>
   );

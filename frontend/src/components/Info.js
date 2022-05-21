@@ -6,50 +6,32 @@ function Info({ page, showNum, maxPage, categoryName, setSort, setShowNum, setPa
     setSort(e.target.value);
   }
 
-  function change10() {
-    // 페이지 내 게시글 수 (10개 보여주기로 지정)
-    if (showNum === 10) {
-      console.log("이미 10개 입니다.");
-    } else {
-      setShowNum(10);
-      setPage(page * 2 - 1);
-    }
+  function changeNum(e) {
+    setShowNum(Number(e.target.value)); // 원래 String형태로 가는데 Paging.js 내부에 있는 <Pagination />에서 number형태를 원하므로 형변환을 해줌
+    setPage(1);
   }
 
-  function change20() {
-    // 페이지 내 게시글 수 (10개 보여주기로 지정)
-    if (showNum === 20) {
-      console.log("이미 20개 입니다.");
-    } else {
-      setShowNum(20);
-      setPage(Math.ceil(page / 2));
-    }
-  }
   return (
     <div className={styles.main}>
-      <div className={styles.sortList}>
-        <button value={1} onClick={sortChange} className={styles.infoBtn}>
-          기본순
-        </button>
-        <button value={2} onClick={sortChange} className={styles.infoBtn}>
-          신작순
-        </button>
-        <button value={3} onClick={sortChange} className={styles.infoBtn}>
-          평점순
-        </button>
-        <button value={4} onClick={sortChange} className={styles.infoBtn}>
-          찜한순
-        </button>
+      <div className={styles.firstLine}>
+        <div></div>
+        <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
+        <div className={styles.select}>
+          <select onChange={sortChange} defaultValue="default">
+            <option value="default">정렬 기준</option>
+            <option value={1}>기본순</option>
+            <option value={2}>신작순</option>
+            <option value={3}>평점순</option>
+            <option value={4}>찜한순</option>
+          </select>
+          <select onChange={changeNum} defaultValue="default">
+            <option value="default">게시물 갯수</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+          </select>
+        </div>
       </div>
-      <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
-      {`page(${page}/${maxPage})`}
-      <div>{categoryName}</div>
-      <button onClick={change10} className={styles.infoBtn}>
-        10
-      </button>
-      <button onClick={change20} className={styles.infoBtn}>
-        20
-      </button>
+      <div className={styles.title}>{categoryName}</div>
     </div>
   );
 }

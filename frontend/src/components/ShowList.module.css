@@ -1,28 +1,21 @@
 .list {
   /* 책 정보 표시 창 */
-  margin: 1px;
+  width: 900px;
+  margin: 0px auto;
+  padding: 20px 0px;
   display: grid;
-  grid-template-columns: 1fr 350px 1fr;
-  border: 1px solid black;
+  grid-template-columns: 1fr 3.5fr;
+  border-top: 1px solid black;
 }
 
 .img {
-  height: 256px;
-  width: 170px;
+  height: 260px;
+  width: 182px;
+  border: 1px solid rgb(150, 150, 150);
 }
 
 .explain {
-  margin: 1px;
-  border: 1px solid black;
-}
-
-.btn_div {
-  /* 상세보기 찜하기 div */
-  margin: 1px;
-  display: grid;
-  justify-content: flex-end;
-  align-items: center;
-  border: 1px solid black;
+  line-height: 30px;
 }
 
 .btn {
@@ -35,4 +28,13 @@
   line-height: 40px; /* ex) 버튼 안의 글자 세로 가운데 정렬 height와 같은 값 이여야 함*/
   font-size: 15px;
   cursor: pointer;
+}
+
+.explain a {
+  font-size: 24px;
+  text-decoration: none;
+  color: black;
+}
+.explain a:hover {
+  text-decoration: underline;
 }

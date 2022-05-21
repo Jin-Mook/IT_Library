@@ -21,8 +21,8 @@
 }
 
 .img {
-  height: 262px;
-  width: 180px;
+  height: auto;
+  width: 250px;
   border: 1px solid black;
 }
 
