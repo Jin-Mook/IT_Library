@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategorySearch from "../components/CategorySearch";
-import styles from "./CategoryMain.module.css";
 import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";

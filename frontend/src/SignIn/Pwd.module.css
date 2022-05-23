@@ -1,0 +1,22 @@
+.hidden {
+  visibility: hidden;
+  color: rgb(228, 0, 0);
+}
+
+.show {
+  color: rgb(228, 0, 0);
+}
+
+.pwd {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.pwd_text {
+  height: 50px;
+  padding: 0px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none; /* 포커스 시 파란테두리 제거 */
+  font-size: 18px;
+  border: none;
+}

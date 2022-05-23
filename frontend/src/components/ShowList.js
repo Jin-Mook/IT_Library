@@ -17,7 +17,7 @@ function ShowList({ value }) {
           <div>{value.book_title}</div>
         </Link>
         <div>
-          {value.book_writer} 저 | {value.book_publisher}(출판사가 나와야 함)
+          {value.book_writer} | {value.book_publisher}
         </div>
         <div>출판일 {value.book_publish_date}</div>
         <button className={styles.btn}>찜하기</button>

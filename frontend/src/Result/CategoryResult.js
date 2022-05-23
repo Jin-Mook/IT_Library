@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategorySearch from "../components/CategorySearch";
-import styles from "./CategoryResult.module.css";
 import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
@@ -36,29 +35,19 @@ function CategoryResult() {
 
   return (
     <div>
-      <div>
-        <CategorySearch categoryId={categoryId} />
-        <Info
-          page={page}
-          showNum={showNum}
-          maxPage={maxPage}
-          categoryName={categoryName}
-          setSort={setSort}
-          setShowNum={setShowNum}
-          setPage={setPage}
-        />
-      </div>
-      <div className={styles.main}>
-        {allBooks.map((value, index) => (
-          <ShowList
-            value={value}
-            index={index}
-            page={page}
-            showNum={showNum}
-            key={value.id}
-          />
-        ))}
-      </div>
+      <CategorySearch categoryId={categoryId} />
+      <Info
+        page={page}
+        showNum={showNum}
+        maxPage={maxPage}
+        categoryName={categoryName}
+        setSort={setSort}
+        setShowNum={setShowNum}
+        setPage={setPage}
+      />
+      {allBooks.map((value) => (
+        <ShowList value={value} key={value.id} />
+      ))}
       <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
     </div>
   );

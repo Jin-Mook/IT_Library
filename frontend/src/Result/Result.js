@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Search from "../components/Search";
-import styles from "./Result.module.css";
 import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
@@ -16,6 +15,7 @@ function Result() {
   const [page, setPage] = useState(1);
   const [showNum, setShowNum] = useState(10);
   const [maxPage, setMaxPage] = useState();
+  const [sort, setSort] = useState(1);
 
   async function data() {
     const response = await axios.get(
@@ -29,26 +29,23 @@ function Result() {
   useEffect(() => {
     // 값이 변할 때 마다 리렌더링
     data();
-  }, [showNum, page]);
+  }, [showNum, page, sort]);
 
   return (
     <div>
-      <div>
-        <Search value={searchResult} />
-        <Info
-          page={page}
-          showNum={showNum}
-          maxPage={maxPage}
-          setShowNum={setShowNum}
-          setPage={setPage}
-        />
-      </div>
-      {`'${searchResult}'의 검색결과`}
-      <div className={styles.main}>
-        {allBooks.map((value) => (
-          <ShowList value={value} page={page} showNum={showNum} key={value.id} />
-        ))}
-      </div>
+      <Search value={searchResult} />
+      <Info
+        page={page}
+        showNum={showNum}
+        maxPage={maxPage}
+        categoryName={searchResult}
+        setSort={setSort}
+        setShowNum={setShowNum}
+        setPage={setPage}
+      />
+      {allBooks.map((value) => (
+        <ShowList value={value} key={value.id} />
+      ))}
       <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
     </div>
   );
