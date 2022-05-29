@@ -16,11 +16,11 @@ function Category() {
     data();
   }, []);
 
-  function Li({ category, id }) {
+  function Li({ categoryName, id }) {
     return (
       <li className={styles.li}>
-        <Link to={`/category?${id}`} state={{ id: id, category: category }}>
-          {category}
+        <Link to={`/category?${id}`} state={{ id: id, categoryName: categoryName }}>
+          {categoryName}
         </Link>
       </li>
     );
@@ -29,7 +29,7 @@ function Category() {
     <div className={styles.main}>
       <ul className={styles.ul}>
         {categories.map((value) => {
-          return <Li id={value.id} key={value.id} category={`${value.category}`} />;
+          return <Li id={value.id} key={value.id} categoryName={`${value.category}`} />;
         })}
       </ul>
     </div>

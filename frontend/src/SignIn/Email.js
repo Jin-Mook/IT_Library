@@ -49,8 +49,9 @@ function Email({ setEmail }) {
         <button className={styles.email_btn} onClick={data}>
           이메일 인증
         </button>
-        <div className={emailCss}>{"이메일 형식에 맞추어 입력해주세요."}</div>
       </div>
+      <input placeholder="인증번호를 입력해주세요"></input>
+      <div className={emailCss}>{"이메일 형식에 맞추어 입력해주세요."}</div>
     </form>
   );
 }

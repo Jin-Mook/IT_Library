@@ -6,65 +6,92 @@ import { Link } from "react-router-dom";
 
 function ShowBook({ text, value }) {
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
-  const [showBooks, setShowBooks] = useState([]); //화면에 표시될 책 목록
+  const [showBooks, setShowBooks] = useState([]);
   const [index, setIndex] = useState(0);
 
   async function data() {
     const response = await axios.get("http://localhost:8000/api/mainPage/all");
-    const result = await response.data;
+    const result = response.data;
     setAllBooks(result[value]);
-    setShowBooks(result[value].slice(0, 5)); // 첫 화면에 보여질 부분 선택
+    setShowBooks(result[value][index]);
   }
+
+  useEffect(() => {
+    data();
+  }, [index]);
 
   function handleLeftBtn() {
     // 왼쪽 버튼을 눌렀을 때 하나 씩 넘어가게 구현
     if (index === 0) {
-      setShowBooks(allBooks.slice(5));
       setIndex(5);
     } else {
-      setShowBooks(allBooks.slice(index - 1, index + 4));
       setIndex(index - 1);
     }
   }
 
   function handleRightBtn() {
     // 오른쪽 버튼을 눌렀을 때 하나 씩 넘어가게 구현
-    if (index === 5) {
-      setShowBooks(allBooks.slice(0, 5));
+    if (index === 9) {
       setIndex(0);
     } else {
-      setShowBooks(allBooks.slice(index + 1, index + 6));
       setIndex(index + 1);
     }
   }
 
-  useEffect(() => {
-    data();
-  }, []);
+  const transHtml = () => {
+    const codes = showBooks.book_info;
+    return (
+      <div className={styles.bookInfo} dangerouslySetInnerHTML={{ __html: codes }}></div>
+    );
+  };
 
   return (
-    <div className={styles.main}>
+    <div className={styles.main_a}>
       <div>{text}</div>
-      <button className={styles.leftBtn} onClick={handleLeftBtn}>
-        {"<"}
-      </button>
-      <button className={styles.rightBtn} onClick={handleRightBtn}>
-        {">"}
-      </button>
-      <div className={styles.img}>
-        {showBooks.map((value) => (
-          <Link to={`/detail/${value.id}`} state={{ bookId: value.id }} key={value.id}>
-            <Img
-              key={value.id}
-              author={value.author}
-              title={value.book_title}
-              coverImg={value.book_image}
-              id={value.key}
-            />
-          </Link>
-        ))}
+      <div className={styles.main_b}>
+        <button className={styles.a} onClick={handleLeftBtn}>
+          {/* 왼쪽 버튼 */}
+          {"<"}
+        </button>
+        <div className={styles.b}>
+          <img src={showBooks.book_image} className={styles.b_1}></img> {/* 사진 */}
+          <div className={styles.b_2}>
+            <div className={styles.b_2_1}>
+              {/* 제목 저자 출판사 */}
+              <div className={styles.title}>{showBooks.book_title}</div>
+              <div>
+                {showBooks.book_writer} | {showBooks.book_publisher}
+              </div>
+              <div>
+                평점 {showBooks.book_rating} | 좋아요 {showBooks.book_like_count}
+              </div>
+            </div>
+            <div className={styles.b_2_2}>{transHtml()}</div> {/* 내용 */}
+            <div className={styles.b_2_3}>
+              {/* 표지 슬라이더 */}
+              {allBooks.map((value) => (
+                <Link
+                  to={`/detail/${value.id}`}
+                  state={{ bookId: value.id }}
+                  key={value.id}
+                >
+                  <Img
+                    key={value.id}
+                    author={value.author}
+                    title={value.book_title}
+                    coverImg={value.book_image}
+                    id={value.key}
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+        <button className={styles.c} onClick={handleRightBtn}>
+          {/* 오른쪽 버튼 */}
+          {">"}
+        </button>
       </div>
-      {`page(${index + 1}/6)`}
     </div>
   );
 }

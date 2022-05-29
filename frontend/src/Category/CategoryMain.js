@@ -5,12 +5,13 @@ import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
 import ShowList from "../components/ShowList";
+import styles from "./CategoryMain.module.css";
 
 function CategoryMain() {
   // 결과창
   let location = useLocation(); //location 객체를 location 변수에 저장
   const categoryId = location.state.id; // location으로 데이터에 접근해서 받아온다!
-  const categoryName = location.state.category; // location으로 데이터에 접근해서 받아온다!
+  const categoryName = location.state.categoryName; // location으로 데이터에 접근해서 받아온다!
 
   const [allBooks, setAllBooks] = useState([]); // 전체 책 목록
   const [page, setPage] = useState(1);
@@ -33,7 +34,7 @@ function CategoryMain() {
   }, [showNum, page, sort]);
 
   return (
-    <div>
+    <div className={styles.main}>
       <CategorySearch categoryId={categoryId} categoryName={categoryName} />
       <Info
         page={page}
@@ -44,6 +45,7 @@ function CategoryMain() {
         setShowNum={setShowNum}
         setPage={setPage}
       />
+      <div className={styles.title}>{categoryName}</div>
       {allBooks.map((value) => (
         <ShowList value={value} key={value.id} />
       ))}

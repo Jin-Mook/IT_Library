@@ -3,6 +3,7 @@ import styles from "./SignUp.module.css";
 import NickName from "./NickName";
 import Email from "./Email";
 import Pwd from "./Pwd";
+import Button from "../components/Button";
 
 function SignUp() {
   const [nickName, setNickName] = useState();
@@ -14,9 +15,10 @@ function SignUp() {
       <NickName setNickName={setNickName} />
       <Email setEmail={setEmail} />
       <Pwd setPwd={setPwd} />
-      <div>
+      {/* <div>
         {nickName} {email} {pwd}
-      </div>
+      </div> */}
+      <Button text={"회원가입"} />
     </div>
   );
 }

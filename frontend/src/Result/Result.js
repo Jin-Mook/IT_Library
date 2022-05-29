@@ -5,6 +5,7 @@ import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
 import ShowList from "../components/ShowList";
+import styles from "./Result.module.css";
 
 function Result() {
   // 결과창
@@ -19,7 +20,7 @@ function Result() {
 
   async function data() {
     const response = await axios.get(
-      `http://localhost:8000/api/mainPage/search?title=${searchResult}&view=${showNum}&page=${page}`
+      `http://localhost:8000/api/mainPage/search?title=${searchResult}&page=${page}&view=${showNum}` /* sort부분은 아직 구현이 안되어있음 &sortMethod=${sort} */
     );
     const result = await response.data;
     setAllBooks(result.books);
@@ -32,7 +33,7 @@ function Result() {
   }, [showNum, page, sort]);
 
   return (
-    <div>
+    <div className={styles.main}>
       <Search value={searchResult} />
       <Info
         page={page}
@@ -43,6 +44,7 @@ function Result() {
         setShowNum={setShowNum}
         setPage={setPage}
       />
+      <div className={styles.title}>{searchResult} 의 검색결과</div>
       {allBooks.map((value) => (
         <ShowList value={value} key={value.id} />
       ))}

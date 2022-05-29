@@ -1,40 +1,6 @@
-.flip {
-  height: 175px;
-  width: 120px;
+.front {
+  height: 132px;
+  width: 90px;
   display: flex; /* 인접한 요소 가로배치(Home.js) */
-  perspective: 1100px;
-}
-
-.card {
-  height: 175px;
-  width: 116px;
-  position: relative;
-  transition: 0.5s; /* 플립 되는 속도 */
-  transform-style: preserve-3d;
-}
-
-.ul {
-  margin: 0px;
-  padding: 5px;
-  list-style: none;
-}
-
-.front,
-.back {
-  position: absolute;
-  height: 175px;
-  width: 116px;
-  backface-visibility: hidden;
-}
-
-/* 뒷면은 사전에 미리 뒤집기 */
-.back {
-  background-color: rgb(39, 39, 39);
-  color: white;
-  transform: rotateY(180deg);
-}
-
-/* 호버 시 뒤집기 */
-.flip:hover .card {
-  transform: rotateY(180deg);
+  padding-right: 20px; /* 이미지 간 간격 */
 }

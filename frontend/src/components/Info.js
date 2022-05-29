@@ -1,7 +1,7 @@
 import Paging from "./Paging";
 import styles from "./Info.module.css";
 
-function Info({ page, showNum, maxPage, categoryName, setSort, setShowNum, setPage }) {
+function Info({ page, showNum, maxPage, setSort, setShowNum, setPage }) {
   function sortChange(e) {
     setSort(e.target.value);
   }
@@ -13,25 +13,22 @@ function Info({ page, showNum, maxPage, categoryName, setSort, setShowNum, setPa
 
   return (
     <div className={styles.main}>
-      <div className={styles.firstLine}>
-        <div></div>
-        <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
-        <div className={styles.select}>
-          <select onChange={sortChange} defaultValue="default">
-            <option value="default">정렬 기준</option>
-            <option value={1}>기본순</option>
-            <option value={2}>신작순</option>
-            <option value={3}>평점순</option>
-            <option value={4}>찜한순</option>
-          </select>
-          <select onChange={changeNum} defaultValue="default">
-            <option value="default">게시물 갯수</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-          </select>
-        </div>
+      <div></div>
+      <Paging page={page} showNum={showNum} maxPage={maxPage} setPage={setPage} />
+      <div className={styles.select}>
+        <select onChange={sortChange} defaultValue="default">
+          <option value="default">정렬 기준</option>
+          <option value={1}>기본순</option>
+          <option value={2}>신작순</option>
+          <option value={3}>평점순</option>
+          <option value={4}>찜한순</option>
+        </select>
+        <select onChange={changeNum} defaultValue="default">
+          <option value="default">게시물 갯수</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+        </select>
       </div>
-      <div className={styles.title}>{categoryName}</div>
     </div>
   );
 }

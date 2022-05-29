@@ -5,6 +5,7 @@ import axios from "axios";
 import Paging from "../components/Paging";
 import Info from "../components/Info";
 import ShowList from "../components/ShowList";
+import styles from "./CategoryResult.module.css";
 
 function CategoryResult() {
   // 결과창
@@ -34,7 +35,7 @@ function CategoryResult() {
   }, [showNum, page, sort]);
 
   return (
-    <div>
+    <div className={styles.main}>
       <CategorySearch categoryId={categoryId} />
       <Info
         page={page}
@@ -45,6 +46,9 @@ function CategoryResult() {
         setShowNum={setShowNum}
         setPage={setPage}
       />
+      <div className={styles.title}>
+        {categoryName} {">"} "{searchResult}" 의 검색결과
+      </div>
       {allBooks.map((value) => (
         <ShowList value={value} key={value.id} />
       ))}
