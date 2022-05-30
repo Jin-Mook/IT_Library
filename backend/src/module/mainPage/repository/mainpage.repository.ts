@@ -30,10 +30,12 @@ export class MainPageRepository {
             'book.book_title',
             'book.book_image',
             'book.book_writer',
+            'book.book_publisher',
             'book.book_publish_date',
+            'book.book_category',
+            'book.book_info',
             'book.book_rating',
             'book.book_like_count',
-            'book.book_category',
           ])
           .orderBy(`book.${el}`, 'DESC')
           .where(`not book.${el} is null`)
