@@ -4,11 +4,22 @@ import NickName from "./NickName";
 import Email from "./Email";
 import Pwd from "./Pwd";
 import Button from "../components/Button";
+import axios from "axios";
 
 function SignUp() {
-  const [nickName, setNickName] = useState();
+  const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState();
+  const [pwd, setPwd] = useState("");
+
+  async function data() {
+    const response = axios.post("http://localhost:8000/api/auth/register", {
+      nickname: nickName,
+      email: email,
+      password: pwd,
+    });
+    const result = response;
+    console.log(result);
+  }
 
   return (
     <div className={styles.main}>
@@ -18,7 +29,7 @@ function SignUp() {
       {/* <div>
         {nickName} {email} {pwd}
       </div> */}
-      <Button text={"회원가입"} />
+      <Button text={"회원가입"} onClick={data} />
     </div>
   );
 }
