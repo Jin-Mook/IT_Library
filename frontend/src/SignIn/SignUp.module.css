@@ -1,12 +1,9 @@
 .main {
   width: 400px;
-  height: 500px auto;
+  height: fit-content;
   margin: 0 auto;
   margin-top: 150px;
   border: 2px solid gray;
-  display: grid;
-  row-gap: 30px; /* fr 사이의 여백 */
-  grid-template-rows: 70px 70px 140px 50px;
   padding: 50px;
 }
 

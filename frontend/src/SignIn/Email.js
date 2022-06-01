@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import styles from "./Email.module.css";
+import Timer from "./Timer";
 
 function Email({ setEmail }) {
   // 이메일 유효성 검사 함수
@@ -10,6 +11,7 @@ function Email({ setEmail }) {
   const [code, setCode] = useState("");
   const [codeCss, setCodeCss] = useState(styles.hidden);
   const [auth, setAuth] = useState(false);
+  const [timerStart, setTimerStart] = useState(false);
 
   async function data(e) {
     if (auth) {
@@ -23,6 +25,7 @@ function Email({ setEmail }) {
 
       if (result.success) {
         setCodeCss(styles.show);
+        setTimerStart(true);
       } else setEmailCss(styles.show);
       // success가 true일 때 인증번호 입력 창 표시
       // false일 시 중복된 이메일 이라는 표시 출력
@@ -57,8 +60,20 @@ function Email({ setEmail }) {
     }
   }
 
+  function ShowTimer() {
+    if (timerStart === true) {
+      return (
+        <div>
+          <Timer />
+        </div>
+      );
+    } else {
+      return <div>false</div>;
+    }
+  }
+
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={styles.main}>
       <div className={styles.email}>
         {/* 이메일 */}
         <input
@@ -83,6 +98,7 @@ function Email({ setEmail }) {
           <button className={styles.auth_btn} onClick={checkAuth}>
             인증번호 확인
           </button>
+          {<ShowTimer />}
         </div>
       </div>
       <div className={emailCss}>{"이메일 형식에 맞추어 입력해주세요."}</div>

@@ -26,9 +26,6 @@ function SignUp() {
       <NickName setNickName={setNickName} />
       <Email setEmail={setEmail} />
       <Pwd setPwd={setPwd} />
-      {/* <div>
-        {nickName} {email} {pwd}
-      </div> */}
       <Button text={"회원가입"} onClick={data} />
     </div>
   );

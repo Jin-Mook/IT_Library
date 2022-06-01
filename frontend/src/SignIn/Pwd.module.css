@@ -8,8 +8,9 @@
 }
 
 .pwd {
+  padding: 40px 0px 0px;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
 
 .pwd_text {
