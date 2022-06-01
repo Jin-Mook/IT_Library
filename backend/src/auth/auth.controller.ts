@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 
 @Controller('/api/auth')
 export class AuthController {
@@ -59,5 +59,10 @@ export class AuthController {
     );
     this.authService.makeCookie(res, id);
     return result;
+  }
+  @Get('test')
+  async test(@Req() req: Request) {
+    console.log(req.cookies);
+    return req.cookies;
   }
 }

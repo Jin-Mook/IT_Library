@@ -4,7 +4,9 @@ import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create(AppModule, {
+    cors: { origin: true, credentials: true },
+  });
   app.use(
     session({
       secret: 'my-secret',
@@ -16,7 +18,7 @@ async function bootstrap() {
       },
     }),
   );
-  app.use(cookieParser('my-secret'));
+  app.use(cookieParser());
   await app.listen(8000);
 }
 bootstrap();
