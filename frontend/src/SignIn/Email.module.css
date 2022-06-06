@@ -1,9 +1,9 @@
-.main {
+.ShowTimer {
+  display: none;
 }
 
 .hidden {
   display: none;
-  color: rgb(228, 0, 0);
 }
 
 .show {

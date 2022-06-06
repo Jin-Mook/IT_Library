@@ -7,9 +7,10 @@ function Email({ setEmail }) {
   // 이메일 유효성 검사 함수
 
   const [checkEmail, setCheckEmail] = useState("");
-  const [emailCss, setEmailCss] = useState(styles.hidden);
   const [code, setCode] = useState("");
+  const [emailCss, setEmailCss] = useState(styles.hidden);
   const [codeCss, setCodeCss] = useState(styles.hidden);
+  const [timerCss, setTimerCss] = useState(styles.show);
   const [auth, setAuth] = useState(false);
   const [timerStart, setTimerStart] = useState(false);
 
@@ -55,6 +56,7 @@ function Email({ setEmail }) {
     if (e.target.previousElementSibling.value === code) {
       setEmail(checkEmail);
       alert("확인되었습니다.");
+      setTimerCss(styles.hidden);
     } else {
       alert("인증번호가 일치하지 않습니다.");
     }
@@ -63,12 +65,10 @@ function Email({ setEmail }) {
   function ShowTimer() {
     if (timerStart === true) {
       return (
-        <div>
+        <div className={timerCss}>
           <Timer />
         </div>
       );
-    } else {
-      return <div>false</div>;
     }
   }
 
@@ -98,7 +98,7 @@ function Email({ setEmail }) {
           <button className={styles.auth_btn} onClick={checkAuth}>
             인증번호 확인
           </button>
-          {<ShowTimer />}
+          <ShowTimer />
         </div>
       </div>
       <div className={emailCss}>{"이메일 형식에 맞추어 입력해주세요."}</div>

@@ -89,7 +89,7 @@ export class AuthService {
   makeCookie(res: Response, id: number) {
     res.cookie('key', id, {
       signed: false,
-      httpOnly: true,
+      httpOnly: false,
       secure: false,
     });
   }

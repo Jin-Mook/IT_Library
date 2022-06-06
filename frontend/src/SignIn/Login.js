@@ -3,14 +3,12 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
-import { Cookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setLogin }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
-
-  const cookies = new Cookies();
-  console.log(cookies);
+  let navigate = useNavigate();
 
   async function data() {
     const response = await axios.post(
@@ -21,8 +19,17 @@ function Login() {
       },
       { withCredentials: true }
     );
-    const result = response;
-    console.log(result);
+    const result = response.data;
+    console.log(result.userInfo);
+
+    if (result.success) {
+      // 로그인 성패 여부에 따른 결과
+      setLogin(true);
+      localStorage.setItem("nickname", result.userInfo.nickname);
+      navigate("/");
+    } else {
+      alert("이메일 혹은 패스워드를 확인하십시오.");
+    }
   }
 
   // async function dataTest() {
@@ -70,7 +77,7 @@ function Login() {
             <Button text="회원가입"></Button>
           </Link>
         </div>
-        {/* <button onClick={dataTest}>test</button> */}
+        {/* <button onClick={console.log(localStorage)}>test</button> */}
       </div>
     </div>
   );
