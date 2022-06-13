@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 
 @Controller('/api/auth')
 export class AuthController {
@@ -59,5 +59,23 @@ export class AuthController {
     );
     this.authService.makeCookie(res, id);
     return result;
+  }
+
+  // 로그아웃
+  @Get('logout')
+  async logout(
+    @Session() session: Record<string | number, any>,
+    @Res({ passthrough: true }) res,
+    @Req() req: Request,
+  ) {
+    console.log(session);
+    // 쿠키를 지우는 로직
+    this.authService.removeCookie(res, 'key');
+    this.authService.removeCookie(res, 'connect.sid');
+
+    // 세션을 지우는 로직
+    await this.authService.removeSession(req);
+
+    return { success: true, message: '로그아웃 완료' };
   }
 }
