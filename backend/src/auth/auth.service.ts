@@ -87,7 +87,9 @@ export class AuthService {
 
   // 세션을 삭제하는 함수
   async removeSession(req: Request) {
-    await req.session.destroy(() => {});
+    await req.session.destroy((err) => {
+      console.log(err);
+    });
   }
 
   // 인증코드 만들어주는 함수

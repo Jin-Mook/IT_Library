@@ -30,13 +30,10 @@ export class BookCommentsEntity {
   users: UsersEntity;
 
   @Column({ type: 'text' })
-  comment_title: number;
+  comment_title: string;
 
   @Column()
   comment_rating: number;
-
-  @Column({ type: 'datetime' })
-  comment_date: Date;
 
   @Column({ type: 'text', nullable: true })
   comment_context: string;
