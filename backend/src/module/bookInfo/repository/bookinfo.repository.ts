@@ -61,14 +61,80 @@ export class BookInfoRepository {
   async plusCommentCountInBooksEntity(
     @TransactionManager() transactionManager: EntityManager,
     bookId: number,
+    option = true,
   ) {
-    await transactionManager
-      .createQueryBuilder()
-      .update(BooksEntity)
+    if (option) {
+      await transactionManager
+        .createQueryBuilder()
+        .update(BooksEntity)
+        .set({
+          comments_count: () => 'comments_count + 1',
+        })
+        .where(`id = ${bookId}`)
+        .execute();
+    } else {
+      await transactionManager
+        .createQueryBuilder()
+        .update(BooksEntity)
+        .set({
+          comments_count: () => 'comments_count - 1',
+        })
+        .where(`id = ${bookId}`)
+        .execute();
+    }
+  }
+
+  // comment 정보 가져오기
+  async getComment(commentId: number) {
+    const comment = await this.bookCommentsModel
+      .createQueryBuilder('comment')
+      .select([
+        'comment.id',
+        'comment.book_id',
+        'comment.user_id',
+        'comment.comment_title',
+        'comment.comment_context',
+        'comment.comment_rating',
+        'comment.updated_at',
+      ])
+      .where(`comment.id = ${commentId}`)
+      .getOne();
+
+    return comment;
+  }
+
+  // commentTitle, commentText, bookRating
+  // 댓글 업데이트하기
+  async updateComment(
+    commentId: number,
+    userId: number,
+    commentTitle: string,
+    commentText: string,
+    bookRating: number,
+  ) {
+    await this.bookCommentsModel
+      .createQueryBuilder('comment')
+      .update(BookCommentsEntity)
       .set({
-        comments_count: () => 'comments_count + 1',
+        comment_title: commentTitle,
+        comment_rating: bookRating,
+        comment_context: commentText,
       })
-      .where(`id = ${bookId}`)
+      .where(`id = ${commentId}`)
+      .andWhere(`user_id = ${userId}`)
       .execute();
+  }
+
+  // 댓글 삭제하기
+  async deleteComment(commentId: number, userId: number) {
+    const deleteInfo = await this.bookCommentsModel
+      .createQueryBuilder('comment')
+      .delete()
+      .from(BookCommentsEntity)
+      .where(`id = ${commentId}`)
+      .andWhere(`user_id = ${userId}`)
+      .execute();
+
+    return deleteInfo;
   }
 }
