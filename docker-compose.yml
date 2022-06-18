@@ -19,7 +19,7 @@ services:
   #     - mysql
 
   mysql:
-    # platform: linux/amd64
+    platform: linux/amd64
     build: ./mysql
 
     restart: unless-stopped

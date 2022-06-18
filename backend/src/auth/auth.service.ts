@@ -3,7 +3,7 @@ import { ResponseDto } from 'src/common/dto/common.dto';
 import { AuthRepository } from './repository/auth.repository';
 import * as bcrypt from 'bcrypt';
 import { EmailService } from 'src/email/email.service';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -78,6 +78,18 @@ export class AuthService {
         nickname,
       },
     };
+  }
+
+  // 쿠키를 삭제해주는 함수
+  removeCookie(res: Response, key: string) {
+    res.clearCookie(key);
+  }
+
+  // 세션을 삭제하는 함수
+  async removeSession(req: Request) {
+    await req.session.destroy((err) => {
+      console.log(err);
+    });
   }
 
   // 인증코드 만들어주는 함수
