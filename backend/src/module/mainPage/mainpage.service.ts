@@ -28,12 +28,14 @@ export class MainpageService {
     title: string,
     view: number,
     page: number,
+    sortMethod: number,
   ): Promise<SearchResponseDto> {
     const [books, maxCount] =
       await this.mainpageRepository.findMainpageBooksWithTitle(
         title,
         view,
         page,
+        sortMethod,
       );
 
     const result: SearchResponseDto = {
@@ -45,5 +47,13 @@ export class MainpageService {
     };
 
     return result;
+  }
+
+  // 책 좋아요 클릭
+  async pushLikeButton(bookId: number) {
+    const updatedLikeCount = await this.mainpageRepository.updateLikeCount(
+      bookId,
+    );
+    return updatedLikeCount;
   }
 }

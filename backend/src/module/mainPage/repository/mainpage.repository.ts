@@ -19,6 +19,13 @@ export class MainPageRepository {
     'book_publish_date',
   ];
 
+  private readonly orderCondition: string[] = [
+    'book_title',
+    'book_publish_date',
+    'book_rating',
+    'book_like_count',
+  ];
+
   // book_rating, book_like_count, book_publish_date
   async findAllBooks() {
     const booksWithTypes = await Promise.all(
@@ -52,24 +59,63 @@ export class MainPageRepository {
     return categories;
   }
 
-  async findMainpageBooksWithTitle(title: string, view: number, page: number) {
-    const books = this.booksModel
-      .createQueryBuilder('book')
-      .select([
-        'book.id',
-        'book.book_title',
-        'book.book_image',
-        'book.book_writer',
-        'book.book_publish_date',
-        'book.book_rating',
-        'book.book_like_count',
-        'book.book_category',
-      ])
-      .where(`book.book_title like '%${title}%'`)
-      .offset(view * (page - 1))
-      .limit(view)
-      .getManyAndCount();
+  async findMainpageBooksWithTitle(
+    title: string,
+    view: number,
+    page: number,
+    sortMethod: number,
+  ) {
+    let books;
+    if (sortMethod === 1) {
+      books = this.booksModel
+        .createQueryBuilder('book')
+        .select([
+          'book.id',
+          'book.book_title',
+          'book.book_image',
+          'book.book_writer',
+          'book.book_publish_date',
+          'book.book_rating',
+          'book.book_like_count',
+          'book.book_category',
+        ])
+        .where(`book.book_title like '%${title}%'`)
+        .offset(view * (page - 1))
+        .limit(view)
+        .orderBy(`book.${this.orderCondition[sortMethod - 1]}`, 'ASC')
+        .getManyAndCount();
+    } else {
+      books = this.booksModel
+        .createQueryBuilder('book')
+        .select([
+          'book.id',
+          'book.book_title',
+          'book.book_image',
+          'book.book_writer',
+          'book.book_publish_date',
+          'book.book_rating',
+          'book.book_like_count',
+          'book.book_category',
+        ])
+        .where(`book.book_title like '%${title}%'`)
+        .offset(view * (page - 1))
+        .limit(view)
+        .orderBy(`book.${this.orderCondition[sortMethod - 1]}`, 'DESC')
+        .getManyAndCount();
+    }
 
     return books;
+  }
+
+  // 좋아요 증가
+  async updateLikeCount(bookId: number) {
+    const updatedLikeCount = await this.booksModel
+      .createQueryBuilder()
+      .update(BooksEntity)
+      .set({ book_like_count: () => 'book_like_count + 1' })
+      .where(`id = ${bookId}`)
+      .execute();
+
+    return updatedLikeCount;
   }
 }
