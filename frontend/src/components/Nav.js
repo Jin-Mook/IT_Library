@@ -1,27 +1,34 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Nav({ login }) {
-  function LoginNav() {
-    const onLogout = () => {
-      localStorage.removeItem("nickname");
-    };
+  const number = useSelector((state) => state.number);
+  async function data() {
+    const response = await axios.get("http://localhost:8000/api/auth/logout");
+    const result = response;
+    console.log(result);
+    console.log(number);
+    localStorage.removeItem("nickname");
+    localStorage.removeItem("login");
+  }
 
-    return login === false ? (
-      <li className={styles.li}>
-        <Link to={"/login"}>로그인</Link>
-      </li>
-    ) : (
+  function LoginNav() {
+    return JSON.parse(localStorage.getItem("login")) == true ? (
       <>
         <li className={styles.li}>
-          <Link to={"/"}>{localStorage.getItem("nickname")}</Link>{" "}
+          <Link to={"/"}>{localStorage.getItem("nickname")}</Link>
           {/* 마이페이지 부분(닉네임처리) */}
         </li>
-        <li className={styles.li} onClick={onLogout}>
+        <li className={styles.li} onClick={data}>
           <Link to={"/"}>로그아웃</Link>
         </li>
       </>
+    ) : (
+      <li className={styles.li}>
+        <Link to={"/login"}>로그인</Link>
+      </li>
     );
   }
 

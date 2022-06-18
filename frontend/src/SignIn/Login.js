@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function Login({ setLogin }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   async function data() {
     const response = await axios.post(
@@ -24,8 +26,7 @@ function Login({ setLogin }) {
 
     if (result.success) {
       // 로그인 성패 여부에 따른 결과
-      setLogin(true);
-      localStorage.setItem("nickname", result.userInfo.nickname);
+      dispatch({ type: "LOGIN" });
       navigate("/");
     } else {
       alert("이메일 혹은 패스워드를 확인하십시오.");
