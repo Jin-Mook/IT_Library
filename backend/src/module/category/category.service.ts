@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { SearchOrCategoryDto } from 'src/common/dto/searchOrCategory.dto';
 import { SearchResponseDto } from '../mainPage/dto/searchResponse.dto';
-import { CategoryDto } from './dto/category.dto';
 import { CategoryRepository } from './repository/category.repository';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class CategoryService {
   constructor(private readonly categoryRepository: CategoryRepository) {}
 
   async getCategoryBooks(
-    query: CategoryDto,
+    query: SearchOrCategoryDto,
     categoryId: number,
   ): Promise<SearchResponseDto> {
     const booksResult = await this.categoryRepository.findCategoryBooks(
@@ -28,7 +28,7 @@ export class CategoryService {
   }
 
   async getCategoryBooksWithTitle(
-    query: CategoryDto,
+    query: SearchOrCategoryDto,
     categoreId: number,
   ): Promise<SearchResponseDto> {
     const booksResult =
