@@ -1,8 +1,8 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { SearchOrCategoryDto } from 'src/common/dto/searchOrCategory.dto';
+import { SearchOrCategoryPipe } from 'src/common/pipe/searchOrCategory.pipe';
 import { SearchResponseDto } from '../mainPage/dto/searchResponse.dto';
 import { CategoryService } from './category.service';
-import { CategoryDto } from './dto/category.dto';
-import { CategoryPipe } from './pipe/category.pipe';
 
 @Controller('/api/category/:categoryId')
 export class CategoryController {
@@ -11,7 +11,7 @@ export class CategoryController {
   @Get()
   async getCategorypageBooks(
     @Param('categoryId', ParseIntPipe) categoryId: number,
-    @Query(CategoryPipe) query: CategoryDto,
+    @Query(SearchOrCategoryPipe) query: SearchOrCategoryDto,
   ): Promise<SearchResponseDto> {
     if (query.title) {
       return this.categoryService.getCategoryBooksWithTitle(query, categoryId);

@@ -1,9 +1,12 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-import { CategoryDto } from '../dto/category.dto';
+import { SearchOrCategoryDto } from '../dto/searchOrCategory.dto';
 
 @Injectable()
-export class CategoryPipe implements PipeTransform {
-  transform(value: CategoryDto, metadata: ArgumentMetadata): CategoryDto {
+export class SearchOrCategoryPipe implements PipeTransform {
+  transform(
+    value: SearchOrCategoryDto,
+    metadata: ArgumentMetadata,
+  ): SearchOrCategoryDto {
     return {
       sortMethod:
         value.sortMethod && value.sortMethod <= 4 ? +value.sortMethod : 1,

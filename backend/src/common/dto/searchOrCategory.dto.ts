@@ -1,6 +1,6 @@
-export class CategoryDto {
+export class SearchOrCategoryDto {
   sortMethod: number;
-  page: number;
   view: number;
   title?: string;
+  page?: number;
 }
