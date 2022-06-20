@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function Login({ setLogin }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   let navigate = useNavigate();
@@ -26,20 +26,14 @@ function Login({ setLogin }) {
 
     if (result.success) {
       // 로그인 성패 여부에 따른 결과
-      dispatch({ type: "LOGIN" });
+      localStorage.setItem("nickname", result.userInfo.nickname);
+      JSON.stringify(localStorage.setItem("login", true));
+      dispatch({ type: "LOGIN", nickname: result.userInfo.nickname });
       navigate("/");
     } else {
       alert("이메일 혹은 패스워드를 확인하십시오.");
     }
   }
-
-  // async function dataTest() {
-  //   const response = await axios.get("http://localhost:8000/api/auth/test", {
-  //     withCredentials: true,
-  //   });
-  //   const result = response;
-  //   console.log(result);
-  // }
 
   function onSubmit(e) {
     console.log(e);
@@ -59,7 +53,7 @@ function Login({ setLogin }) {
       <div className={styles.inner}>
         <form onSubmit={onSubmit}>
           <input
-            type="email"
+            type="text"
             className={styles.email}
             placeholder="이메일"
             onChange={EmailChange}

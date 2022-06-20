@@ -1,24 +1,29 @@
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-function Nav({ login }) {
-  const number = useSelector((state) => state.number);
+function Nav() {
+  const nickname = useSelector((state) => state.nickname); // useSelector를 이용해 state에 저장되어있는 nickname값 가져오기
+  const dispatch = useDispatch(); // dispatch 선언
+  console.log(nickname);
+
   async function data() {
-    const response = await axios.get("http://localhost:8000/api/auth/logout");
+    dispatch({ type: "LOGOUT" }); // state 상태 변경
+    const response = await axios.get("http://localhost:8000/api/auth/logout", {
+      withCredentials: true,
+    });
     const result = response;
     console.log(result);
-    console.log(number);
     localStorage.removeItem("nickname");
     localStorage.removeItem("login");
   }
 
   function LoginNav() {
-    return JSON.parse(localStorage.getItem("login")) == true ? (
+    return JSON.parse(localStorage.getItem("login")) === true ? (
       <>
         <li className={styles.li}>
-          <Link to={"/"}>{localStorage.getItem("nickname")}</Link>
+          <Link to={"/"}>{nickname}</Link>
           {/* 마이페이지 부분(닉네임처리) */}
         </li>
         <li className={styles.li} onClick={data}>
