@@ -1,3 +1,4 @@
+import styles from "./BookComment.module.css";
 import axios from "axios";
 import { useState } from "react";
 
@@ -25,20 +26,24 @@ function BookComment() {
     console.log(result);
   }
   return (
-    <div>
+    <div className={styles.main}>
       <input
         type="text"
         value={title}
-        placeholder="제목을 입력하세요."
+        placeholder="제목"
+        className={styles.title}
         onChange={onChangeTitle}
       ></input>
       <input
         type="text"
         value={text}
-        placeholder="제목을 입력하세요."
+        placeholder="댓글입력"
+        className={styles.text}
         onChange={onChangeText}
       ></input>
-      <button onClick={data}>댓글 작성</button>
+      <button onClick={data} className={styles.button}>
+        댓글 작성
+      </button>
     </div>
   );
 }

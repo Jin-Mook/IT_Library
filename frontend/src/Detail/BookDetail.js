@@ -37,17 +37,19 @@ function BookDetail() {
         <img src={detail.book_image} className={styles.img} /> {/* 1-1 */}
         <div className={styles.title}>
           {/* 1-2 */}
-          <div>{detail.book_title}</div>
-          <div>{detail.book_writer}</div>
-          <div>{detail.book_publisher}</div>
-          <div>{detail.book_publish_date}</div>
+          <div className={styles.a}>
+            <div className={styles.book_title}>{detail.book_title}</div>
+            <div className={styles.book_writer}>{detail.book_writer}</div>
+            <div className={styles.book_publisher}>{detail.book_publisher}</div>
+            <div className={styles.book_publish_date}>{detail.book_publish_date}</div>
+          </div>
         </div>
       </div>
       {transHtml()}
       {/* 2 */}
       <div className={styles.comments}>
         <BookComment />
-      </div>{" "}
+      </div>
       {/* 3 */}
     </div>
   );

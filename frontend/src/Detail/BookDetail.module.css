@@ -2,22 +2,27 @@
   width: 700px;
   margin: 0px auto;
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-row-gap: 1px; /* grid row 사이 갭 */
+  grid-template-rows: 1fr 0fr 1fr;
+  grid-row-gap: 20px; /* grid row 사이 갭 */
   padding: 1px;
   border: 1px solid black;
 }
 
 .bookMain {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   padding: 1px;
   border: 1px solid rgb(255, 0, 0);
 }
 
 .title {
-  display: grid;
-  border: 1px solid black;
+  padding-left: 10px;
+  line-height: 30px;
+  border: 1px solid rgb(255, 0, 212);
+}
+
+.book_title {
+  font-size: 20px;
 }
 
 .img {
@@ -27,11 +32,19 @@
 }
 
 .bookInfo {
-  padding: 1px;
-  border: 1px solid rgb(255, 0, 0);
+  line-height: 23px;
+  height: fit-content;
+  padding: 20px 10px;
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: 30px;
 }
 
 .comments {
-  padding: 1px;
-  border: 1px solid rgb(255, 0, 0);
+  border: 1px solid rgb(64, 0, 255);
+}
+
+.a {
+  padding: 20px 10px;
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: 30px;
 }
