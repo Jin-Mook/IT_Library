@@ -54,16 +54,20 @@ function ShowBook({ text, value }) {
           {"<"}
         </button>
         <div className={styles.b}>
-          <img src={showBooks.book_image} className={styles.b_1}></img> {/* 사진 */}
+          <Link to={`/detail/${showBooks.id}`} state={{ bookId: showBooks.id }}>
+            <img src={showBooks.book_image} className={styles.b_1}></img> {/* 사진 */}
+          </Link>
           <div className={styles.b_2}>
             <div className={styles.b_2_1}>
               {/* 제목 저자 출판사 */}
-              <div className={styles.title}>{showBooks.book_title}</div>
+              <Link to={`/detail/${showBooks.id}`} state={{ bookId: showBooks.id }}>
+                <div className={styles.title}>{showBooks.book_title}</div>
+              </Link>
               <div>
                 {showBooks.book_writer} | {showBooks.book_publisher}
               </div>
               <div>
-                평점 {showBooks.book_rating} | 좋아요 {showBooks.book_like_count}
+                ⭐️ {showBooks.book_rating} 👍 {showBooks.book_like_count}
               </div>
             </div>
             <div className={styles.b_2_2}>{transHtml()}</div> {/* 내용 */}

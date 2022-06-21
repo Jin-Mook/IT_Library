@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./BookDetail.module.css";
+import BookComment from "./BookComment";
 
 function BookDetail() {
   const [detail, setDetail] = useState([]);
@@ -44,7 +45,10 @@ function BookDetail() {
       </div>
       {transHtml()}
       {/* 2 */}
-      <div className={styles.comments}>{comments}</div> {/* 3 */}
+      <div className={styles.comments}>
+        <BookComment />
+      </div>{" "}
+      {/* 3 */}
     </div>
   );
 }

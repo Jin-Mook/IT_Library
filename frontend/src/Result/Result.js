@@ -20,7 +20,7 @@ function Result() {
 
   async function data() {
     const response = await axios.get(
-      `http://localhost:8000/api/mainPage/search?title=${searchResult}&page=${page}&view=${showNum}` /* sort부분은 아직 구현이 안되어있음 &sortMethod=${sort} */
+      `http://localhost:8000/api/mainPage/search?title=${searchResult}&page=${page}&view=${showNum}&sortMethod=${sort}`
     );
     const result = await response.data;
     setAllBooks(result.books);
