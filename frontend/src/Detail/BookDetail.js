@@ -18,6 +18,13 @@ function BookDetail() {
     setComments(result.bookComments);
   }
 
+  async function data() {
+    const response = await axios.get(`http://localhost:8000/api/bookinfo/${bookId}`);
+    const result = await response.data;
+    setDetail(result.book);
+    setComments(result.bookComments);
+  }
+
   useEffect(() => {
     data();
   }, []); // string 형태를 html로 변환해야됌
@@ -32,25 +39,23 @@ function BookDetail() {
   return (
     <div className={styles.main}>
       <div className={styles.bookMain}>
-        {" "}
-        {/* 1 */}
-        <img src={detail.book_image} className={styles.img} /> {/* 1-1 */}
+        <img src={detail.book_image} className={styles.img} />
         <div className={styles.title}>
-          {/* 1-2 */}
-          <div className={styles.a}>
+          <div className={styles.info}>
             <div className={styles.book_title}>{detail.book_title}</div>
             <div className={styles.book_writer}>{detail.book_writer}</div>
             <div className={styles.book_publisher}>{detail.book_publisher}</div>
             <div className={styles.book_publish_date}>{detail.book_publish_date}</div>
           </div>
+          <div className={styles.like}>
+            <button>좋아요</button>
+          </div>
         </div>
       </div>
       {transHtml()}
-      {/* 2 */}
       <div className={styles.comments}>
         <BookComment />
       </div>
-      {/* 3 */}
     </div>
   );
 }

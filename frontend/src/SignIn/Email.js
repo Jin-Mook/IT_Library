@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./Email.module.css";
 import Timer from "./Timer";
 
-function Email({ setEmail }) {
+function Email({ setEmail, setEmailSuccess }) {
   // 이메일 유효성 검사 함수
 
   const [checkEmail, setCheckEmail] = useState("");
@@ -27,6 +27,7 @@ function Email({ setEmail }) {
       if (result.success) {
         setCodeCss(styles.show);
         setTimerStart(true);
+        setEmailSuccess(true);
       } else setEmailCss(styles.show);
       // success가 true일 때 인증번호 입력 창 표시
       // false일 시 중복된 이메일 이라는 표시 출력

@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import styles from "./NickName.module.css";
 
-function NickName({ setNickName }) {
+function NickName({ setNickName, setNickNameSuccess }) {
   const [checkNickName, setCheckNickName] = useState("");
   const [successCss, setSuccessCss] = useState(styles.hidden);
   const [falseCss, setFalseCss] = useState(styles.hidden);
@@ -17,6 +17,7 @@ function NickName({ setNickName }) {
       setNickName(checkNickName);
       setFalseCss(styles.hidden);
       setSuccessCss(styles.success);
+      setNickNameSuccess(true);
     } else {
       setSuccessCss(styles.hidden);
       setFalseCss(styles.show);

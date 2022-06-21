@@ -31,6 +31,8 @@ export class BookinfoController {
     @Body(CommentPipe) comment: CommentDto,
     @Session() session,
   ) {
+    console.log(comment);
+
     const userId = session.userId;
     if (userId) {
       const result = await this.bookInfoService.writeComment(

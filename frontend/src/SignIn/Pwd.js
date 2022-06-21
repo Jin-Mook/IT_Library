@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Pwd.module.css";
 
-function Pwd({ setPwd }) {
+function Pwd({ setPwd, setPwdSuccess }) {
   // const [checkPwd, setCheckPwd] = useState();
   const [pwdCss, setPwdCss] = useState(styles.hidden);
   const [pwdCheckCss, setPwdCheckCss] = useState(styles.hidden);
@@ -19,7 +19,7 @@ function Pwd({ setPwd }) {
   function CheckPwdSame(e) {
     // 패스워드 일치 유효성 검사 함수
     if (e.target.value !== e.target.previousSibling.previousSibling.value) {
-      return setPwdCheckCss(styles.show); // 비밀번호 확인과 비밀번호가 일치할 때
+      return setPwdCheckCss(styles.show), setPwdSuccess(true); // 비밀번호 확인과 비밀번호가 일치할 때
     } else {
       return setPwdCheckCss(styles.hidden), setPwd(e.target.value); // 비밀번호 확인과 비밀번호가 같을 때
     }
