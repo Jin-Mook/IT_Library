@@ -48,7 +48,9 @@ function BookDetail() {
             <div className={styles.book_publish_date}>{detail.book_publish_date}</div>
           </div>
           <div className={styles.like}>
-            <button onClick={likeData}>좋아요</button>
+            <button className={styles.button} onClick={likeData}>
+              좋아요
+            </button>
           </div>
         </div>
       </div>

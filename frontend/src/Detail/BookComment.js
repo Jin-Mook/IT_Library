@@ -27,6 +27,16 @@ function BookComment({ bookId, comments }) {
     console.log(result);
   }
 
+  async function deleteData(value, e) {
+    console.log(value);
+    const response = await axios.delete(
+      `http://localhost:8000/api/bookinfo/${bookId}/comment/${value.id}`,
+      { withCredentials: true }
+    );
+    const result = response.data;
+    console.log(result);
+  }
+
   let showComments = comments.map((value) => (
     <div className={styles.comments}>
       <hr></hr>
@@ -34,6 +44,13 @@ function BookComment({ bookId, comments }) {
       <div>제목 : {value.comment_title}</div>
       <div>내용 : {value.comment_context}</div>
       <hr></hr>
+      <button
+        onClick={(e) => {
+          deleteData(value, e);
+        }}
+      >
+        삭제
+      </button>
     </div>
   ));
 

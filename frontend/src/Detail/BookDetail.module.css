@@ -5,14 +5,12 @@
   grid-template-rows: 0fr 0fr 0fr;
   grid-row-gap: 20px; /* grid row 사이 갭 */
   padding: 1px;
-  border: 1px solid blue;
 }
 
 .bookMain {
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 1px;
-  border: 2px solid rgb(0, 255, 0);
 }
 
 .img {
@@ -24,7 +22,7 @@
 .title {
   display: grid;
   grid-template-rows: 3fr 1fr;
-  border: 2px solid red;
+  margin-left: 20px;
 }
 
 .info {
@@ -40,6 +38,15 @@
   padding: 20px;
   background-color: rgba(128, 128, 128, 0.5);
   border-radius: 20px;
+}
+
+.button {
+  width: 30%;
+  height: 100%;
+  font-size: 16px;
+  background-color: rgba(88, 141, 255, 0.95);
+  border: none;
+  border-radius: 10px;
 }
 
 .book_title {
