@@ -29,7 +29,7 @@ function Login() {
       localStorage.setItem("nickname", result.userInfo.nickname);
       JSON.stringify(localStorage.setItem("login", true));
       dispatch({ type: "LOGIN", nickname: result.userInfo.nickname });
-      navigate("/");
+      window.location.replace("/");
     } else {
       alert("이메일 혹은 패스워드를 확인하십시오.");
     }

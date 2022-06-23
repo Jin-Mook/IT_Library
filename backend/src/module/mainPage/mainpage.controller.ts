@@ -37,6 +37,8 @@ export class MainpageController {
     @Session() session,
   ) {
     const userId = session.userId;
+    console.log(session);
+    console.log(userId);
     if (!userId) return { seccess: false, message: '로그인이 필요합니다.' };
 
     const updatedLikeCount = await this.mainpageService.pushLikeButton(bookId);

@@ -21,10 +21,13 @@ function BookDetail() {
   useEffect(() => {
     // 값이 변할 때 마다 리렌더링
     data();
-  }, [comments]);
+  }, []);
 
   async function likeData() {
-    const response = await axios.get(`http://localhost:8000/api/mainPage/like/${bookId}`);
+    const response = await axios.get(
+      `http://localhost:8000/api/mainPage/like/${bookId}`,
+      { withCredentials: true }
+    );
     const result = response.data;
     console.log(result);
   }
