@@ -18,16 +18,16 @@ function BookDetail() {
     setComments(result.bookComments);
   }
 
-  async function data() {
-    const response = await axios.get(`http://localhost:8000/api/bookinfo/${bookId}`);
-    const result = await response.data;
-    setDetail(result.book);
-    setComments(result.bookComments);
-  }
-
   useEffect(() => {
+    // 값이 변할 때 마다 리렌더링
     data();
-  }, []); // string 형태를 html로 변환해야됌
+  }, [comments]);
+
+  async function likeData() {
+    const response = await axios.get(`http://localhost:8000/api/mainPage/like/${bookId}`);
+    const result = response.data;
+    console.log(result);
+  }
 
   const transHtml = () => {
     const codes = detail.book_info;
@@ -39,7 +39,7 @@ function BookDetail() {
   return (
     <div className={styles.main}>
       <div className={styles.bookMain}>
-        <img src={detail.book_image} className={styles.img} />
+        <img src={detail.book_image} className={styles.img} alt="Thumbnail" />
         <div className={styles.title}>
           <div className={styles.info}>
             <div className={styles.book_title}>{detail.book_title}</div>
@@ -48,13 +48,13 @@ function BookDetail() {
             <div className={styles.book_publish_date}>{detail.book_publish_date}</div>
           </div>
           <div className={styles.like}>
-            <button>좋아요</button>
+            <button onClick={likeData}>좋아요</button>
           </div>
         </div>
       </div>
       {transHtml()}
-      <div className={styles.comments}>
-        <BookComment />
+      <div>
+        <BookComment bookId={bookId} comments={comments} />
       </div>
     </div>
   );

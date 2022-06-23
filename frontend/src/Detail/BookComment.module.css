@@ -2,6 +2,8 @@
   padding: 20px 20px;
   background-color: rgb(200, 200, 200);
   border-radius: 30px;
+  display: grid;
+  grid-template-rows: 0fr 0fr;
 }
 
 .title {
@@ -29,4 +31,12 @@
   background-color: rgba(88, 141, 255, 0.95);
   border: none;
   border-radius: 10px;
+}
+
+.commentsMain {
+  padding: 20px 0px;
+}
+
+.comments {
+  padding: 20px 0px;
 }
